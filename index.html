@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitFuel | Your Daily Training & Nutrition</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Navigation -->
+        <nav class="main-nav">
+            <div class="logo">
+                <span class="logo-icon">⚡</span>
+                <span class="logo-text">FITFUEL</span>
+            </div>
+            <div class="nav-links">
+                <a href="#dashboard" class="nav-link active" data-section="dashboard">Dashboard</a>
+                <a href="#workouts" class="nav-link" data-section="workouts">Workouts</a>
+                <a href="#meals" class="nav-link" data-section="meals">Meals</a>
+                <a href="#grocery" class="nav-link" data-section="grocery">Grocery</a>
+                <a href="#progress" class="nav-link" data-section="progress">Progress</a>
+            </div>
+            <button class="menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+
+        <!-- Mobile Nav -->
+        <div class="mobile-nav">
+            <a href="#dashboard" class="mobile-nav-link active" data-section="dashboard">
+                <span class="nav-icon">📊</span>
+                <span>Home</span>
+            </a>
+            <a href="#workouts" class="mobile-nav-link" data-section="workouts">
+                <span class="nav-icon">💪</span>
+                <span>Train</span>
+            </a>
+            <a href="#meals" class="mobile-nav-link" data-section="meals">
+                <span class="nav-icon">🍽️</span>
+                <span>Eat</span>
+            </a>
+            <a href="#grocery" class="mobile-nav-link" data-section="grocery">
+                <span class="nav-icon">🛒</span>
+                <span>Shop</span>
+            </a>
+            <a href="#progress" class="mobile-nav-link" data-section="progress">
+                <span class="nav-icon">📈</span>
+                <span>Track</span>
+            </a>
+        </div>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="section active">
+                <div class="hero-card">
+                    <div class="hero-content">
+                        <p class="hero-date" id="currentDate"></p>
+                        <h1 class="hero-greeting">Ready to crush it today?</h1>
+                        <div class="hero-stats">
+                            <div class="stat-pill">
+                                <span class="stat-value">5'7"</span>
+                                <span class="stat-label">Height</span>
+                            </div>
+                            <div class="stat-pill">
+                                <span class="stat-value">160</span>
+                                <span class="stat-label">lbs</span>
+                            </div>
+                            <div class="stat-pill">
+                                <span class="stat-value">⚽</span>
+                                <span class="stat-label">Athlete</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hero-visual">
+                        <div class="energy-ring"></div>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="dash-card workout-preview">
+                        <div class="card-header">
+                            <h3>Today's Workout</h3>
+                            <span class="card-badge" id="workoutType">Loading...</span>
+                        </div>
+                        <div class="card-body">
+                            <p class="workout-name" id="todayWorkoutName">--</p>
+                            <p class="workout-duration" id="todayWorkoutDuration">-- min</p>
+                        </div>
+                        <a href="#workouts" class="card-action" data-section="workouts">Start Workout →</a>
+                    </div>
+
+                    <div class="dash-card meal-preview">
+                        <div class="card-header">
+                            <h3>Tonight's Dinner</h3>
+                            <span class="card-badge meal-badge" id="mealCalories">-- cal</span>
+                        </div>
+                        <div class="card-body">
+                            <p class="meal-name" id="todayMealName">--</p>
+                            <p class="meal-time" id="todayMealTime">-- min prep</p>
+                        </div>
+                        <a href="#meals" class="card-action" data-section="meals">View Recipe →</a>
+                    </div>
+
+                    <div class="dash-card streak-card">
+                        <div class="streak-number" id="streakCount">0</div>
+                        <p class="streak-label">Day Streak</p>
+                        <button class="check-in-btn" id="checkInBtn">✓ Check In Today</button>
+                    </div>
+
+                    <div class="dash-card quote-card">
+                        <blockquote id="dailyQuote">"The only bad workout is the one that didn't happen."</blockquote>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Workouts Section -->
+            <section id="workouts" class="section">
+                <div class="section-header">
+                    <h2>Weekly Training Plan</h2>
+                    <p class="section-subtitle">Designed for maintaining athletic performance</p>
+                </div>
+
+                <div class="week-selector">
+                    <button class="day-btn" data-day="0">Sun</button>
+                    <button class="day-btn" data-day="1">Mon</button>
+                    <button class="day-btn" data-day="2">Tue</button>
+                    <button class="day-btn" data-day="3">Wed</button>
+                    <button class="day-btn" data-day="4">Thu</button>
+                    <button class="day-btn" data-day="5">Fri</button>
+                    <button class="day-btn" data-day="6">Sat</button>
+                </div>
+
+                <div class="workout-display">
+                    <div class="workout-header">
+                        <h3 id="workoutTitle">--</h3>
+                        <div class="workout-meta">
+                            <span class="meta-item" id="workoutDuration">⏱️ -- min</span>
+                            <span class="meta-item" id="workoutIntensity">🔥 --</span>
+                        </div>
+                    </div>
+
+                    <div class="exercise-list" id="exerciseList">
+                        <!-- Exercises loaded dynamically -->
+                    </div>
+
+                    <div class="workout-notes" id="workoutNotes">
+                        <!-- Notes loaded dynamically -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Meals Section -->
+            <section id="meals" class="section">
+                <div class="section-header">
+                    <h2>Dinner Recipes</h2>
+                    <p class="section-subtitle">Quick, nutritious meals for busy athletes</p>
+                </div>
+
+                <div class="week-selector">
+                    <button class="day-btn" data-day="0">Sun</button>
+                    <button class="day-btn" data-day="1">Mon</button>
+                    <button class="day-btn" data-day="2">Tue</button>
+                    <button class="day-btn" data-day="3">Wed</button>
+                    <button class="day-btn" data-day="4">Thu</button>
+                    <button class="day-btn" data-day="5">Fri</button>
+                    <button class="day-btn" data-day="6">Sat</button>
+                </div>
+
+                <div class="meal-display">
+                    <div class="meal-header">
+                        <h3 id="mealTitle">--</h3>
+                        <div class="meal-meta">
+                            <span class="meta-item" id="mealPrepTime">⏱️ -- min</span>
+                            <span class="meta-item" id="mealCals">🔥 -- cal</span>
+                            <span class="meta-item" id="mealProtein">💪 --g protein</span>
+                        </div>
+                    </div>
+
+                    <div class="recipe-grid">
+                        <div class="ingredients-section">
+                            <h4>Ingredients</h4>
+                            <ul class="ingredients-list" id="ingredientsList">
+                                <!-- Ingredients loaded dynamically -->
+                            </ul>
+                        </div>
+
+                        <div class="instructions-section">
+                            <h4>Instructions</h4>
+                            <ol class="instructions-list" id="instructionsList">
+                                <!-- Instructions loaded dynamically -->
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="meal-tips" id="mealTips">
+                        <!-- Tips loaded dynamically -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Grocery List Section -->
+            <section id="grocery" class="section">
+                <div class="section-header">
+                    <h2>Weekly Grocery List</h2>
+                    <p class="section-subtitle">Everything you need for this week's meals</p>
+                </div>
+
+                <div class="grocery-summary">
+                    <div class="summary-item">
+                        <span class="summary-number" id="totalItems">0</span>
+                        <span class="summary-label">Items</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-number" id="estimatedCost">~$35</span>
+                        <span class="summary-label">Est. Cost</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-number" id="checkedItems">0</span>
+                        <span class="summary-label">Got It</span>
+                    </div>
+                </div>
+
+                <div class="grocery-actions">
+                    <button class="grocery-btn" id="clearChecked">Clear Checked</button>
+                    <button class="grocery-btn primary" id="copyList">📋 Copy List</button>
+                </div>
+
+                <div class="grocery-categories" id="groceryList">
+                    <!-- Categories loaded dynamically -->
+                </div>
+            </section>
+
+            <!-- Progress Section -->
+            <section id="progress" class="section">
+                <div class="section-header">
+                    <h2>Track Progress</h2>
+                    <p class="section-subtitle">Log workouts and meals completed</p>
+                </div>
+
+                <div class="progress-grid">
+                    <div class="progress-card">
+                        <h4>This Week</h4>
+                        <div class="week-progress">
+                            <div class="progress-day" data-day="0">
+                                <span class="day-label">S</span>
+                                <div class="day-check workout-check" data-type="workout"></div>
+                                <div class="day-check meal-check" data-type="meal"></div>
+                            </div>
+                            <div class="progress-day" data-day="1">
+                                <span class="day-label">M</span>
+                                <div class="day-check workout-check" data-type="workout"></div>
+                                <div class="day-check meal-check" data-type="meal"></div>
+                            </div>
+                            <div class="progress-day" data-day="2">
+                                <span class="day-label">T</span>
+                                <div class="day-check workout-check" data-type="workout"></div>
+                                <div class="day-check meal-check" data-type="meal"></div>
+                            </div>
+                            <div class="progress-day" data-day="3">
+                                <span class="day-label">W</span>
+                                <div class="day-check workout-check" data-type="workout"></div>
+                                <div class="day-check meal-check" data-type="meal"></div>
+                            </div>
+                            <div class="progress-day" data-day="4">
+                                <span class="day-label">T</span>
+                                <div class="day-check workout-check" data-type="workout"></div>
+                                <div class="day-check meal-check" data-type="meal"></div>
+                            </div>
+                            <div class="progress-day" data-day="5">
+                                <span class="day-label">F</span>
+                                <div class="day-check workout-check" data-type="workout"></div>
+                                <div class="day-check meal-check" data-type="meal"></div>
+                            </div>
+                            <div class="progress-day" data-day="6">
+                                <span class="day-label">S</span>
+                                <div class="day-check workout-check" data-type="workout"></div>
+                                <div class="day-check meal-check" data-type="meal"></div>
+                            </div>
+                        </div>
+                        <div class="legend">
+                            <span><span class="legend-dot workout"></span> Workout</span>
+                            <span><span class="legend-dot meal"></span> Meal</span>
+                        </div>
+                    </div>
+
+                    <div class="progress-card stats-card">
+                        <h4>Stats</h4>
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <span class="stat-number" id="totalWorkouts">0</span>
+                                <span class="stat-text">Workouts</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number" id="totalMeals">0</span>
+                                <span class="stat-text">Meals Cooked</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number" id="currentStreak">0</span>
+                                <span class="stat-text">Day Streak</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="progress-card log-card">
+                        <h4>Quick Log</h4>
+                        <div class="log-buttons">
+                            <button class="log-btn workout-log" id="logWorkout">
+                                <span class="log-icon">💪</span>
+                                <span>Log Workout</span>
+                            </button>
+                            <button class="log-btn meal-log" id="logMeal">
+                                <span class="log-icon">🍽️</span>
+                                <span>Log Meal</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="progress-card notes-card">
+                        <h4>Notes</h4>
+                        <textarea id="progressNotes" placeholder="How are you feeling? Any adjustments needed?"></textarea>
+                        <button class="save-notes-btn" id="saveNotes">Save Notes</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Exercise Quick Reference Modal -->
+    <div class="video-modal" id="videoModal">
+        <div class="modal-overlay" id="modalOverlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">✕</button>
+            <h3 class="modal-title" id="modalTitle">Exercise Form</h3>
+            
+            <div class="video-container" id="videoContainer">
+                <!-- Short looping video inserted here -->
+            </div>
+            
+            <div class="quick-cues" id="quickCues">
+                <!-- Large form cues for gym reference -->
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
+
