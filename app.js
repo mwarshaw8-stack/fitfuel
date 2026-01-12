@@ -371,7 +371,7 @@ const workouts = {
     }
 };
 
-// Meal Data - Weekly Dinner Plan (Simple, Budget-Friendly One-Pan Meals)
+// Meal Data - Weekly Dinner Plan ($70 Budget, Kroger Prices)
 const meals = {
     0: { // Sunday
         name: "Teriyaki Turkey Lettuce Wraps",
@@ -380,99 +380,96 @@ const meals = {
         calories: 420,
         protein: 38,
         ingredients: [
-            "1 lb ground turkey (~$4)",
-            "1 bell pepper, diced",
+            "1 lb ground turkey",
+            "1 green bell pepper, diced",
             "1/2 onion, diced",
-            "2 cups spinach (or frozen)",
+            "1/2 cup frozen spinach",
             "3 cloves garlic, minced",
-            "1/4 cup teriyaki sauce",
-            "Lettuce leaves or rice",
-            "Sriracha (optional)"
+            "3 tbsp teriyaki sauce",
+            "Lettuce leaves or rice"
         ],
         instructions: [
             "Heat a large skillet over medium-high heat.",
             "Add ground turkey, break apart and cook 5-6 min until browned.",
             "Add peppers, onion, and garlic. Cook 3-4 min until softened.",
-            "Stir in spinach until wilted, about 1 minute.",
+            "Stir in frozen spinach until heated through.",
             "Pour in teriyaki sauce, toss everything together.",
             "Serve in lettuce wraps or over rice."
         ],
-        tips: "~$6 total, makes 3 servings = $2/meal. Use frozen spinach to save more. Bulk ground turkey is usually cheapest."
+        tips: "~$5 total for 3 servings. Frozen spinach is way cheaper than fresh and works great here!"
     },
     1: { // Monday
-        name: "Chicken Thigh & Frozen Veggie Stir-Fry",
+        name: "Garlic Chicken & Broccoli Stir-Fry",
         prepTime: 5,
         cookTime: 15,
         calories: 450,
         protein: 38,
         ingredients: [
-            "1 lb chicken thighs, cubed (~$3)",
-            "1 bag frozen stir-fry veggies (~$2)",
-            "3 cloves garlic, minced",
+            "1 lb chicken thighs, cubed",
+            "1 bag frozen broccoli",
+            "4 cloves garlic, minced",
             "3 tbsp soy sauce",
             "1 tbsp oil",
-            "Rice (instant or microwave)",
-            "Red pepper flakes (optional)"
+            "Rice to serve"
         ],
         instructions: [
             "Heat oil in a large skillet over medium-high heat.",
             "Season chicken with salt and pepper, cook 6-7 min until done.",
-            "Add frozen veggies directly to pan (no need to thaw).",
-            "Add garlic, cook 4-5 min until veggies are hot.",
+            "Add frozen broccoli directly to pan.",
+            "Add garlic, cook 4-5 min until broccoli is hot.",
             "Pour soy sauce over, toss to coat.",
             "Serve over rice."
         ],
-        tips: "~$5 total for 3 servings. Chicken thighs are way cheaper than breast AND more flavorful. Frozen veggies are clutch."
+        tips: "~$4 for 3 servings. Chicken thighs are $2.49/lb - half the price of breast!"
     },
     2: { // Tuesday
-        name: "Budget Beef & Bean Taco Skillet",
+        name: "Beef & Black Bean Tacos",
         prepTime: 5,
         cookTime: 12,
         calories: 480,
         protein: 32,
         ingredients: [
-            "1 lb ground beef (~$5)",
-            "1 can black beans, drained (~$1)",
+            "1 lb ground beef (73/27)",
+            "1 can black beans, drained",
             "1/2 onion, diced",
             "2 cloves garlic, minced",
             "2 tbsp taco seasoning",
-            "Splash of water",
-            "Tortillas, rice, or lettuce"
+            "Tortillas"
         ],
         instructions: [
             "Brown ground beef in skillet over medium-high heat, 5-6 min.",
-            "Drain excess fat if needed.",
+            "Drain excess fat.",
             "Add onion and garlic, cook 3 min.",
             "Stir in beans and taco seasoning with splash of water.",
             "Simmer 3-4 min until everything is coated.",
-            "Serve in tortillas, over rice, or in lettuce wraps."
+            "Serve in tortillas with cheese."
         ],
-        tips: "~$6 for 4 big servings = $1.50/meal! Beans stretch the meat and add fiber. Top with salsa, cheese, hot sauce."
+        tips: "~$5 for 4 servings = $1.25/meal! The 73/27 beef is cheaper and the fat adds flavor."
     },
     3: { // Wednesday
-        name: "Egg Fried Rice with Veggies",
+        name: "Veggie Egg Fried Rice",
         prepTime: 5,
         cookTime: 10,
         calories: 420,
         protein: 18,
         ingredients: [
-            "4 eggs (~$1)",
-            "2 cups cooked rice (day-old is best)",
-            "1 cup frozen peas & carrots (~$1)",
+            "4 eggs",
+            "2 cups cooked rice",
+            "1 zucchini, diced",
             "3 cloves garlic, minced",
             "3 tbsp soy sauce",
             "2 tbsp oil",
-            "Green onions (optional)"
+            "Green onions"
         ],
         instructions: [
             "Heat 1 tbsp oil in skillet over high heat.",
             "Scramble eggs, break into pieces, set aside.",
-            "Add remaining oil, toss in rice and frozen veggies.",
+            "Add remaining oil, toss in rice and zucchini.",
             "Stir-fry 4-5 min until rice is slightly crispy.",
             "Add garlic, soy sauce, and eggs back in.",
-            "Toss everything together and serve."
+            "Top with green onions and serve."
         ],
-        tips: "~$3 total for 2 big servings. The cheapest meal of the week! Use leftover rice or make instant rice. Add any protein you have."
+        tips: "~$2 for 2 big servings! Cheapest dinner of the week. Use leftover rice from other meals."
     },
     4: { // Thursday
         name: "Chickpea & Spinach Curry",
@@ -481,9 +478,9 @@ const meals = {
         calories: 400,
         protein: 15,
         ingredients: [
-            "2 cans chickpeas, drained (~$2)",
-            "1 can diced tomatoes (~$1)",
-            "2 cups spinach (fresh or frozen)",
+            "2 cans chickpeas, drained",
+            "1 can diced tomatoes",
+            "1 cup frozen spinach",
             "3 cloves garlic, minced",
             "2 tbsp curry powder",
             "1 tbsp oil",
@@ -494,60 +491,59 @@ const meals = {
             "Add garlic and curry powder, stir 30 seconds until fragrant.",
             "Add diced tomatoes and chickpeas.",
             "Simmer 10 min, mashing some chickpeas for thickness.",
-            "Stir in spinach until wilted.",
+            "Stir in frozen spinach until heated.",
             "Serve over rice."
         ],
-        tips: "~$4 for 4 servings = $1/meal! Canned chickpeas are a cheap protein source. This one's vegetarian but super filling."
+        tips: "~$3 for 4 servings = $0.75/meal! Vegetarian, filling, and crazy cheap."
     },
     5: { // Friday
-        name: "Garlic Butter Chicken & Rice",
+        name: "Greek Chicken & Tomato Skillet",
         prepTime: 5,
         cookTime: 15,
-        calories: 520,
+        calories: 480,
         protein: 40,
         ingredients: [
-            "1 lb chicken thighs, cubed (~$3)",
-            "2 cups instant rice",
-            "2 cups chicken broth (~$1)",
-            "4 cloves garlic, minced",
-            "2 tbsp butter",
-            "Italian seasoning, salt, pepper",
-            "Fresh parsley (optional)"
+            "1 lb chicken thighs, cubed",
+            "4 Roma tomatoes, diced",
+            "1/2 cup frozen spinach",
+            "3 cloves garlic, minced",
+            "1/4 cup feta crumbles",
+            "1 tbsp butter",
+            "Italian seasoning"
         ],
         instructions: [
             "Melt butter in skillet over medium-high heat.",
-            "Season chicken, cook 6-7 min until browned.",
-            "Add garlic, cook 30 seconds.",
-            "Pour in broth and rice, stir.",
-            "Cover and simmer 10 min until rice absorbs liquid.",
-            "Fluff with fork and serve."
+            "Season chicken with Italian seasoning, cook 6-7 min.",
+            "Add garlic and tomatoes, cook 3 min.",
+            "Stir in frozen spinach until heated.",
+            "Top with feta crumbles and serve.",
+            "Great over rice or with bread."
         ],
-        tips: "~$5 for 3 servings. Everything cooks in one pan including the rice! Tastes way fancier than it is."
+        tips: "~$5 for 3 servings. The feta makes it feel fancy but it's still budget-friendly!"
     },
     6: { // Saturday
-        name: "Loaded Black Bean Quesadillas",
+        name: "Chicken & Black Bean Quesadillas",
         prepTime: 5,
-        cookTime: 10,
-        calories: 550,
-        protein: 24,
+        cookTime: 15,
+        calories: 580,
+        protein: 35,
         ingredients: [
-            "4 large flour tortillas (~$2)",
-            "1 can black beans, drained (~$1)",
-            "1 cup shredded cheese (~$2)",
-            "1/2 onion, diced",
-            "1 bell pepper, diced",
+            "1 lb chicken thighs, sliced thin",
+            "1 can black beans, drained",
+            "1 cup shredded cheese",
+            "1 bell pepper, sliced",
             "Taco seasoning",
-            "Salsa, sour cream for dipping"
+            "Tortillas (4)"
         ],
         instructions: [
-            "Sauté onion and pepper in skillet 3-4 min.",
-            "Add beans and taco seasoning, mash slightly, set aside.",
-            "Wipe pan, add tortilla, layer cheese and bean mix on half.",
-            "Fold tortilla, cook 2-3 min per side until golden.",
-            "Repeat with remaining tortillas.",
-            "Cut into triangles, serve with salsa."
+            "Cook chicken with taco seasoning until done, 6-7 min. Set aside.",
+            "Sauté pepper 3-4 min, add beans, mash slightly.",
+            "Build quesadillas: tortilla + cheese + chicken + beans + cheese.",
+            "Cook 2-3 min per side until golden.",
+            "Cut into triangles and serve.",
+            "Add salsa or hot sauce if you like."
         ],
-        tips: "~$5 for 4 quesadillas. Cheap, fast, satisfying weekend meal. Add leftover chicken or beef if you have it."
+        tips: "~$6 for 4 big quesadillas. Using chicken thighs instead of buying extra protein saves money!"
     }
 };
 
@@ -574,51 +570,49 @@ let state = {
     notes: localStorage.getItem('fitfuel_notes') || ''
 };
 
-// Grocery List - Categorized ingredients with Kroger prices
+// Grocery List - Categorized ingredients with Kroger prices (~$70 budget)
 const groceryCategories = {
     "🥩 Proteins": [
-        { item: "Ground turkey (2 lbs)", price: "$7.98", meals: ["Sun", "Fri"] },
-        { item: "Chicken thighs (2 lbs)", price: "$5.98", meals: ["Mon", "Fri"] },
-        { item: "Ground beef 80/20 (1 lb)", price: "$5.49", meals: ["Tue"] },
-        { item: "Kroger eggs (1 dozen)", price: "$3.29", meals: ["Wed"] },
-        { item: "Kroger chickpeas (2 cans)", price: "$1.78", meals: ["Thu"] }
+        { item: "Ground turkey (1 lb)", price: "$3.99", meals: ["Sun"] },
+        { item: "Chicken thighs value pack (3 lbs)", price: "$7.47", meals: ["Mon", "Fri", "Sat"] },
+        { item: "Ground beef 73/27 (1 lb)", price: "$4.49", meals: ["Tue"] },
+        { item: "Kroger eggs (18 count)", price: "$4.29", meals: ["Wed", "Extras"] },
+        { item: "Kroger chickpeas (2 cans)", price: "$1.58", meals: ["Thu"] }
     ],
     "🥬 Produce": [
-        { item: "Bell peppers (4-5)", price: "$4.00", meals: ["Sun", "Tue", "Wed", "Sat"] },
-        { item: "Yellow onions (3 lb bag)", price: "$3.49", meals: ["Sun", "Tue", "Wed", "Sat"] },
-        { item: "Baby spinach (5oz container)", price: "$3.49", meals: ["Sun", "Thu", "Fri"] },
+        { item: "Green bell peppers (4)", price: "$2.00", meals: ["Sun", "Tue", "Sat"] },
+        { item: "Yellow onions (3 lb bag)", price: "$2.99", meals: ["All week"] },
+        { item: "Frozen spinach (12oz)", price: "$1.49", meals: ["Sun", "Thu", "Fri"] },
         { item: "Garlic (1 head)", price: "$0.50", meals: ["All week"] },
-        { item: "Broccoli crowns (1 lb)", price: "$2.49", meals: ["Mon"] },
-        { item: "Cherry tomatoes (1 pint)", price: "$2.99", meals: ["Fri"] },
-        { item: "Zucchini (1)", price: "$0.99", meals: ["Wed"] },
-        { item: "Butter lettuce (1 head)", price: "$2.49", meals: ["Sun"] },
-        { item: "Green onions (1 bunch)", price: "$0.99", meals: ["Wed", "Sat"] }
+        { item: "Frozen broccoli (12oz)", price: "$1.29", meals: ["Mon"] },
+        { item: "Roma tomatoes (4)", price: "$1.50", meals: ["Fri"] },
+        { item: "Zucchini (1)", price: "$0.79", meals: ["Wed"] },
+        { item: "Romaine lettuce", price: "$1.99", meals: ["Sun"] },
+        { item: "Green onions (1 bunch)", price: "$0.79", meals: ["Wed", "Sat"] }
     ],
     "🥫 Canned & Dry": [
-        { item: "Kroger black beans (2 cans)", price: "$1.58", meals: ["Tue", "Sat"] },
-        { item: "Kroger diced tomatoes (1 can)", price: "$0.99", meals: ["Thu"] },
-        { item: "Kroger instant rice (14oz)", price: "$2.29", meals: ["Sun", "Mon", "Wed", "Thu"] },
-        { item: "Mission tortillas (8 pack)", price: "$2.99", meals: ["Tue", "Sat"] }
+        { item: "Kroger black beans (3 cans)", price: "$2.37", meals: ["Tue", "Sat"] },
+        { item: "Kroger diced tomatoes (1 can)", price: "$0.89", meals: ["Thu"] },
+        { item: "Kroger long grain rice (2 lb)", price: "$1.99", meals: ["All week"] },
+        { item: "Kroger tortillas (10 pack)", price: "$1.99", meals: ["Tue", "Sat"] }
     ],
-    "🧂 Pantry & Sauces": [
-        { item: "Kikkoman teriyaki sauce", price: "$3.29", meals: ["Sun"] },
-        { item: "Kikkoman soy sauce", price: "$2.99", meals: ["Mon", "Wed"] },
-        { item: "Kroger taco seasoning (2 packs)", price: "$1.00", meals: ["Tue", "Sat"] },
+    "🧂 Pantry (buy once, lasts weeks)": [
+        { item: "Kroger teriyaki sauce", price: "$2.49", meals: ["Sun"] },
+        { item: "Kroger soy sauce", price: "$1.99", meals: ["Mon", "Wed"] },
+        { item: "Kroger taco seasoning (3 pack)", price: "$1.29", meals: ["Tue", "Sat"] },
         { item: "Kroger curry powder", price: "$2.49", meals: ["Thu"] },
-        { item: "Kroger Italian seasoning", price: "$1.99", meals: ["Fri"] },
-        { item: "Kroger olive oil (17oz)", price: "$5.49", meals: ["All week"] }
+        { item: "Kroger vegetable oil (48oz)", price: "$3.49", meals: ["All week"] }
     ],
-    "🧀 Dairy & Other": [
-        { item: "Athenos feta crumbles", price: "$4.49", meals: ["Fri"] },
-        { item: "Kroger shredded cheddar (8oz)", price: "$2.99", meals: ["Sat"] },
-        { item: "Kroger butter (1 stick)", price: "$1.49", meals: ["Fri"] },
-        { item: "Kroger chicken broth (32oz)", price: "$1.99", meals: ["Fri"] }
+    "🧀 Dairy": [
+        { item: "Kroger feta crumbles", price: "$3.49", meals: ["Fri"] },
+        { item: "Kroger shredded cheese (8oz)", price: "$2.49", meals: ["Sat"] },
+        { item: "Kroger butter (1 stick)", price: "$1.29", meals: ["Fri"] },
+        { item: "Kroger chicken broth (32oz)", price: "$1.49", meals: ["Fri"] }
     ],
-    "❄️ Optional Add-ons": [
-        { item: "Sriracha sauce", price: "$3.99", meals: ["Sun", "Wed"] },
-        { item: "Kroger frozen peas & carrots", price: "$1.29", meals: ["Wed"] },
-        { item: "Kroger Greek yogurt (plain)", price: "$0.99", meals: ["Tue"] },
-        { item: "Kroger salsa (16oz)", price: "$2.49", meals: ["Sat"] }
+    "💡 Already Have? Skip These": [
+        { item: "Salt & pepper", price: "$0.00", meals: ["All week"] },
+        { item: "Italian seasoning (if you have)", price: "$0.00", meals: ["Fri"] },
+        { item: "Hot sauce (optional)", price: "$0.00", meals: ["Any"] }
     ]
 };
 
