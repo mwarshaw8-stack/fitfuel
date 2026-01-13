@@ -251,123 +251,314 @@ const exerciseVideos = {
         videoId: "SsT_go-oCcQ",
         start: 60,
         cues: ["Hold 30-60 sec", "Focus on worked muscles", "Don't bounce"]
+    },
+    
+    // Longevity & Mobility Exercises
+    "90/90 Hip Stretch": {
+        videoId: "emPFT8U-lcc",
+        start: 30,
+        cues: ["Front leg 90°, back leg 90°", "Sit tall, don't lean", "Breathe and relax into it"]
+    },
+    "Thoracic Spine Rotations": {
+        videoId: "0DlBm8DdZFg",
+        start: 25,
+        cues: ["Keep hips stable", "Rotate from mid-back", "Follow hand with eyes"]
+    },
+    "Shoulder CARS (Circles)": {
+        videoId: "oITK4ywlOcc",
+        start: 20,
+        cues: ["Slow controlled circles", "Maximum range of motion", "Keep rest of body still"]
+    },
+    "Deep Squat Hold": {
+        videoId: "M5y7k5HSPGM",
+        start: 15,
+        cues: ["Heels down if possible", "Knees out over toes", "Breathe and relax"]
+    },
+    "Gentle Walk": {
+        videoId: "brFHyOtTwH4",
+        start: 0,
+        cues: ["Easy conversational pace", "Enjoy nature if possible", "15-30 minutes"]
+    },
+    "Hip Circles & Leg Swings": {
+        videoId: "R0mMyV5OtcM",
+        start: 30,
+        cues: ["Controlled circles", "Front/back and side/side", "Wake up the hips"]
+    },
+    "Goblet Squat": {
+        videoId: "MeIiIdhvXT4",
+        start: 45,
+        cues: ["Hold weight at chest", "Elbows inside knees", "Sit deep between legs"]
+    },
+    "Walking Lunges": {
+        videoId: "L8fvypPrzzs",
+        start: 30,
+        cues: ["Long stride forward", "Back knee toward floor", "Keep torso upright"]
+    },
+    "Glute Bridge (weighted)": {
+        videoId: "OUgsJ8-Vi0E",
+        start: 25,
+        cues: ["Drive through heels", "Squeeze glutes at top", "Don't hyperextend back"]
+    },
+    "Single-Leg Calf Raises": {
+        videoId: "gwLzBJYoWlI",
+        start: 35,
+        cues: ["Full range of motion", "Pause at top", "Control the negative"]
+    },
+    "Push-Ups (or Bench Press)": {
+        videoId: "IODxDxX7oi4",
+        start: 40,
+        cues: ["Body straight as plank", "Elbows 45° from body", "Chest to floor"]
+    },
+    "Dumbbell Rows": {
+        videoId: "pYcpY20QaE8",
+        start: 35,
+        cues: ["Flat back, core tight", "Pull elbow to hip", "Squeeze shoulder blade"]
+    },
+    "Lat Pulldowns (or Pull-Ups)": {
+        videoId: "CAwf7n6Luuc",
+        start: 90,
+        cues: ["Lean back slightly", "Pull to upper chest", "Squeeze lats"]
+    },
+    "Shoulder Stretch": {
+        videoId: "GQ77Qq3JxuU",
+        start: 20,
+        cues: ["Cross body stretch", "Hold 30-60 seconds", "Both arms"]
+    },
+    "Bird Dogs": {
+        videoId: "wiFNA3sqjCA",
+        start: 25,
+        cues: ["Opposite arm and leg", "Keep back flat", "Slow and controlled"]
+    },
+    "Pallof Press (or hold)": {
+        videoId: "AH_QZLm_0-s",
+        start: 30,
+        cues: ["Resist rotation", "Press straight out", "Core stays tight"]
+    },
+    "Kettlebell Swings": {
+        videoId: "YSxHifyI6s8",
+        start: 105,
+        cues: ["HINGE, not squat", "Power from hip snap", "Squeeze glutes at top"]
+    },
+    "Goblet Squat to Press": {
+        videoId: "03gvHRwkPHc",
+        start: 20,
+        cues: ["Squat deep", "Stand and press", "One fluid motion"]
+    },
+    "Push-Up to Row": {
+        videoId: "FaJPE35ORBw",
+        start: 25,
+        cues: ["Push-up, then row", "Keep hips stable", "Alternate arms"]
+    },
+    "Step-Ups": {
+        videoId: "dQqApCGd5Ss",
+        start: 30,
+        cues: ["Drive through front foot", "Don't push off back leg", "Control the descent"]
+    },
+    "Turkish Get-Up": {
+        videoId: "0bWRPC49-KI",
+        start: 60,
+        cues: ["Eyes on weight always", "Go SLOW", "Master each position"]
+    },
+    "Incline Dumbbell Press": {
+        videoId: "8iPEnn-ltC8",
+        start: 60,
+        cues: ["Bench 30-45°", "Press up and slightly in", "Don't flare elbows"]
+    },
+    "Seated Cable Row (or DB Row)": {
+        videoId: "GZbfZ033f74",
+        start: 40,
+        cues: ["Squeeze shoulder blades", "Pull to lower chest", "Control the return"]
+    },
+    "Arnold Press": {
+        videoId: "3ml7BH7mNwQ",
+        start: 30,
+        cues: ["Rotate as you press", "Palms face you at bottom", "Full lockout at top"]
+    },
+    "Chin-Ups (or Assisted)": {
+        videoId: "b-ztMQpj8yc",
+        start: 40,
+        cues: ["Palms facing you", "Pull chin over bar", "Control the descent"]
+    },
+    "Tricep Dips (or Pushdowns)": {
+        videoId: "6kALZikXxLc",
+        start: 25,
+        cues: ["Elbows stay tight", "Lower with control", "Full extension at top"]
+    },
+    "Dead Hang": {
+        videoId: "SILmJeNOF3g",
+        start: 20,
+        cues: ["Relax and hang", "Shoulders away from ears", "Grip strength + spine decompression"]
+    },
+    "Option A: 30-45 min Walk": {
+        videoId: "brFHyOtTwH4",
+        start: 0,
+        cues: ["Easy pace", "Outdoors if possible", "Enjoy it"]
+    },
+    "Option B: Easy Bike Ride": {
+        videoId: "JGvLfCCmYwQ",
+        start: 0,
+        cues: ["Light effort", "30-45 minutes", "Zone 2 heart rate"]
+    },
+    "Option C: Swimming": {
+        videoId: "Wcx8qrlhnF0",
+        start: 30,
+        cues: ["Easy laps", "Great for joints", "Full body movement"]
+    },
+    "Option D: Yoga Class": {
+        videoId: "v7AYKMP6rOE",
+        start: 0,
+        cues: ["Any style works", "Focus on breath", "Mobility + mindfulness"]
+    },
+    "Option E: Recreational Sports": {
+        videoId: "R0mMyV5OtcM",
+        start: 30,
+        cues: ["Play for fun", "Not competition", "Move and enjoy"]
+    },
+    "Light Stretching": {
+        videoId: "SsT_go-oCcQ",
+        start: 60,
+        cues: ["Hold 30+ seconds", "Breathe deeply", "No bouncing"]
+    },
+    "Brisk Walk or Light Jog": {
+        videoId: "brFHyOtTwH4",
+        start: 0,
+        cues: ["Conversational pace", "Zone 2 heart rate", "Sustainable effort"]
+    },
+    "Cat-Cow Cooldown": {
+        videoId: "kqnua4rHVVA",
+        start: 8,
+        cues: ["Slow and controlled", "Sync with breath", "Release tension"]
+    },
+    "Stretch: Hips & Shoulders": {
+        videoId: "SsT_go-oCcQ",
+        start: 60,
+        cues: ["Hit tight areas", "Hold each stretch 30 sec", "Breathe and relax"]
+    },
+    "Arm Circles & Band Warm-Up": {
+        videoId: "JObYtU7Y7ag",
+        start: 25,
+        cues: ["Small to large circles", "Both directions", "Get blood flowing"]
     }
 };
 
-// Workout Data - Weekly Plan for Former Collegiate Soccer Player
+// Workout Data - Longevity-Focused Strength & Mobility Program
 const workouts = {
-    0: { // Sunday - Active Recovery
-        name: "Active Recovery & Mobility",
-        type: "Recovery",
-        duration: 30,
+    0: { // Sunday - Mobility & Recovery
+        name: "Mobility & Joint Health",
+        type: "Mobility",
+        duration: 35,
         intensity: "Low",
         exercises: [
-            { name: "Foam Rolling - Full Body", detail: "10 minutes" },
-            { name: "Hip Flexor Stretch", detail: "2 min each side" },
-            { name: "Pigeon Pose", detail: "2 min each side" },
-            { name: "Cat-Cow Flow", detail: "20 reps" },
+            { name: "Foam Rolling - Full Body", detail: "8 minutes" },
+            { name: "Cat-Cow Flow", detail: "2 min slow" },
             { name: "World's Greatest Stretch", detail: "5 each side" },
-            { name: "Light Walk or Bike", detail: "15 minutes" }
+            { name: "90/90 Hip Stretch", detail: "2 min each side" },
+            { name: "Thoracic Spine Rotations", detail: "10 each side" },
+            { name: "Shoulder CARS (Circles)", detail: "5 slow each direction" },
+            { name: "Deep Squat Hold", detail: "2 min total" },
+            { name: "Gentle Walk", detail: "15 min" }
         ],
-        notes: "Focus on areas that feel tight from the week. This is your reset day - don't skip it! Great time for a nature walk or easy bike ride."
+        notes: "Mobility is the foundation of longevity. This isn't optional - it's how you keep moving well for 60+ years. Don't rush these."
     },
     1: { // Monday - Lower Body Strength
-        name: "Lower Body Power & Strength",
-        type: "Strength",
-        duration: 55,
-        intensity: "High",
-        exercises: [
-            { name: "Dynamic Warm-Up", detail: "5 min (leg swings, hip circles)" },
-            { name: "Barbell Back Squat", detail: "4 x 6-8 reps" },
-            { name: "Romanian Deadlift", detail: "3 x 10 reps" },
-            { name: "Bulgarian Split Squats", detail: "3 x 8 each leg" },
-            { name: "Leg Press", detail: "3 x 12 reps" },
-            { name: "Nordic Hamstring Curls", detail: "3 x 6 reps" },
-            { name: "Standing Calf Raises", detail: "4 x 15 reps" },
-            { name: "Core: Plank Holds", detail: "3 x 45 sec" }
-        ],
-        notes: "As a former soccer player, your legs are your foundation. Focus on controlled eccentric (lowering) phases. Rest 90 seconds between heavy sets."
-    },
-    2: { // Tuesday - Conditioning & Agility
-        name: "Soccer-Style Conditioning",
-        type: "Cardio",
-        duration: 45,
-        intensity: "High",
-        exercises: [
-            { name: "Dynamic Warm-Up", detail: "5 min" },
-            { name: "Ladder Drills", detail: "5 minutes (ickey shuffle, in-out)" },
-            { name: "Cone Agility - T-Drill", detail: "6 reps" },
-            { name: "Box Jumps", detail: "4 x 8 reps" },
-            { name: "Interval Sprints", detail: "8 x 30 sec on, 30 sec off" },
-            { name: "Shuttle Runs (5-10-5)", detail: "6 reps" },
-            { name: "Medicine Ball Slams", detail: "3 x 12 reps" },
-            { name: "Cool Down Jog", detail: "5 minutes" }
-        ],
-        notes: "This mimics the intermittent high-intensity nature of soccer. Push hard during work intervals, recover fully during rest. Stay hydrated!"
-    },
-    3: { // Wednesday - Upper Body
-        name: "Upper Body Strength",
+        name: "Lower Body Strength",
         type: "Strength",
         duration: 50,
-        intensity: "Medium",
+        intensity: "Moderate",
         exercises: [
-            { name: "Warm-Up (Band Pull-Aparts)", detail: "2 x 15" },
-            { name: "Bench Press", detail: "4 x 8 reps" },
-            { name: "Bent Over Rows", detail: "4 x 8 reps" },
-            { name: "Overhead Press", detail: "3 x 10 reps" },
-            { name: "Lat Pulldowns", detail: "3 x 10 reps" },
-            { name: "Dumbbell Incline Press", detail: "3 x 10 reps" },
-            { name: "Face Pulls", detail: "3 x 15 reps" },
-            { name: "Bicep Curls / Tricep Pushdowns", detail: "3 x 12 each" }
+            { name: "Hip Circles & Leg Swings", detail: "3 min warm-up" },
+            { name: "Goblet Squat", detail: "3 x 10 (focus on depth)" },
+            { name: "Romanian Deadlift", detail: "3 x 10 (hamstrings & hinge)" },
+            { name: "Walking Lunges", detail: "3 x 8 each leg" },
+            { name: "Glute Bridge (weighted)", detail: "3 x 12" },
+            { name: "Single-Leg Calf Raises", detail: "3 x 12 each" },
+            { name: "Dead Bug", detail: "3 x 10 each side" },
+            { name: "Hip Flexor Stretch", detail: "90 sec each side" }
         ],
-        notes: "Balance pushing and pulling movements. Soccer players often neglect upper body - this builds functional strength and injury prevention."
+        notes: "Strong legs = independence as you age. Focus on full range of motion over heavy weight. Control every rep."
     },
-    4: { // Thursday - Tempo Run & Core
-        name: "Tempo Run & Core Circuit",
-        type: "Cardio",
-        duration: 40,
-        intensity: "Medium",
-        exercises: [
-            { name: "Easy Jog Warm-Up", detail: "5 minutes" },
-            { name: "Tempo Run", detail: "20 min at 70-75% effort" },
-            { name: "Cool Down Jog", detail: "5 minutes" },
-            { name: "Dead Bugs", detail: "3 x 12 each side" },
-            { name: "Russian Twists", detail: "3 x 20 reps" },
-            { name: "Hollow Body Hold", detail: "3 x 30 sec" },
-            { name: "Side Plank", detail: "2 x 30 sec each side" },
-            { name: "Bicycle Crunches", detail: "3 x 20 reps" }
-        ],
-        notes: "Tempo pace should feel 'comfortably hard' - you can speak in short sentences. Great for building aerobic base and mental toughness."
-    },
-    5: { // Friday - Full Body Power
-        name: "Full Body Athletic Power",
+    2: { // Tuesday - Upper Body Push & Pull
+        name: "Upper Body Balance",
         type: "Strength",
-        duration: 55,
-        intensity: "High",
+        duration: 45,
+        intensity: "Moderate",
         exercises: [
-            { name: "Dynamic Warm-Up", detail: "5 minutes" },
-            { name: "Power Cleans", detail: "5 x 3 reps" },
-            { name: "Front Squats", detail: "4 x 6 reps" },
-            { name: "Push Press", detail: "4 x 6 reps" },
-            { name: "Weighted Pull-Ups", detail: "4 x 6 reps" },
-            { name: "Kettlebell Swings", detail: "3 x 15 reps" },
-            { name: "Single-Leg RDL", detail: "3 x 8 each leg" },
-            { name: "Farmer's Carry", detail: "3 x 40 meters" }
+            { name: "Band Pull-Aparts", detail: "2 x 15 warm-up" },
+            { name: "Push-Ups (or Bench Press)", detail: "3 x 10-12" },
+            { name: "Dumbbell Rows", detail: "3 x 10 each arm" },
+            { name: "Overhead Press", detail: "3 x 10" },
+            { name: "Lat Pulldowns (or Pull-Ups)", detail: "3 x 10" },
+            { name: "Face Pulls", detail: "3 x 15 (shoulder health!)" },
+            { name: "Farmer's Carry", detail: "3 x 30 seconds" },
+            { name: "Shoulder Stretch", detail: "60 sec each" }
         ],
-        notes: "Focus on explosive power - this translates to speed on the field. Quality over quantity. Rest 2 minutes between power clean sets."
+        notes: "Balance push and pull 1:1 to prevent shoulder problems. Face pulls are non-negotiable for long-term shoulder health."
     },
-    6: { // Saturday - Pickup Game or Long Run
-        name: "Active Play Day",
-        type: "Cardio",
-        duration: 60,
-        intensity: "Medium",
+    3: { // Wednesday - Core & Cardio
+        name: "Core Stability & Easy Cardio",
+        type: "Core/Cardio",
+        duration: 40,
+        intensity: "Low-Moderate",
         exercises: [
-            { name: "Option A: Pickup Soccer/Basketball", detail: "45-60 min" },
-            { name: "Option B: Long Easy Run", detail: "5-6 miles at conversational pace" },
-            { name: "Option C: Hiking", detail: "60+ minutes" },
-            { name: "Post-Activity Stretching", detail: "10 minutes" }
+            { name: "Brisk Walk or Light Jog", detail: "20 min (zone 2)" },
+            { name: "Plank Hold", detail: "3 x 30-45 sec" },
+            { name: "Side Plank", detail: "3 x 20 sec each side" },
+            { name: "Bird Dogs", detail: "3 x 8 each side" },
+            { name: "Dead Bugs", detail: "3 x 10 each side" },
+            { name: "Pallof Press (or hold)", detail: "3 x 10 each side" },
+            { name: "Glute Bridges", detail: "2 x 15" },
+            { name: "Cat-Cow Cooldown", detail: "2 minutes" }
         ],
-        notes: "This day is about enjoying movement! Join intramurals, play pickup games, or explore a trail. The best workout is one you actually enjoy."
+        notes: "Core stability prevents back pain - the #1 complaint as people age. Zone 2 cardio (conversational pace) is the best for heart health."
+    },
+    4: { // Thursday - Full Body Functional
+        name: "Full Body Functional",
+        type: "Strength",
+        duration: 50,
+        intensity: "Moderate",
+        exercises: [
+            { name: "Dynamic Warm-Up", detail: "5 min" },
+            { name: "Kettlebell Swings", detail: "3 x 15 (hip power)" },
+            { name: "Goblet Squat to Press", detail: "3 x 8" },
+            { name: "Single-Leg RDL", detail: "3 x 8 each (balance!)" },
+            { name: "Push-Up to Row", detail: "3 x 8 each arm" },
+            { name: "Step-Ups", detail: "3 x 10 each leg" },
+            { name: "Turkish Get-Up", detail: "2 x 3 each side" },
+            { name: "Stretch: Hips & Shoulders", detail: "5 min" }
+        ],
+        notes: "Functional movements = real-life strength. Single-leg work improves balance which prevents falls as you age. Turkish get-ups are the ultimate functional exercise."
+    },
+    5: { // Friday - Upper Body & Carry
+        name: "Upper Strength & Grip",
+        type: "Strength",
+        duration: 45,
+        intensity: "Moderate",
+        exercises: [
+            { name: "Arm Circles & Band Warm-Up", detail: "3 min" },
+            { name: "Incline Dumbbell Press", detail: "3 x 10" },
+            { name: "Seated Cable Row (or DB Row)", detail: "3 x 10" },
+            { name: "Arnold Press", detail: "3 x 10" },
+            { name: "Chin-Ups (or Assisted)", detail: "3 x 6-8" },
+            { name: "Tricep Dips (or Pushdowns)", detail: "2 x 12" },
+            { name: "Bicep Curls", detail: "2 x 12" },
+            { name: "Dead Hang", detail: "3 x 20-30 sec (shoulder health)" }
+        ],
+        notes: "Grip strength is one of the best predictors of longevity. Dead hangs decompress your spine and build grip. Don't skip them!"
+    },
+    6: { // Saturday - Active Recovery & Fun
+        name: "Active Recovery & Play",
+        type: "Recovery",
+        duration: 45,
+        intensity: "Low",
+        exercises: [
+            { name: "Option A: 30-45 min Walk", detail: "outdoors if possible" },
+            { name: "Option B: Easy Bike Ride", detail: "30-45 min" },
+            { name: "Option C: Swimming", detail: "easy laps, 30 min" },
+            { name: "Option D: Yoga Class", detail: "any style" },
+            { name: "Option E: Recreational Sports", detail: "for fun, not competition" },
+            { name: "Light Stretching", detail: "10 min" }
+        ],
+        notes: "Move your body in a way you enjoy. This isn't about burning calories - it's about staying active for life. Consistency > intensity."
     }
 };
 
