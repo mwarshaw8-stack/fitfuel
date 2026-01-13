@@ -2,406 +2,344 @@
 // FITFUEL - Personal Training & Nutrition
 // ========================================
 
-// Exercise Database - Videos with timestamps to jump to demo + form cues
+// Exercise Database - Verified working YouTube videos + form cues
 const exerciseVideos = {
     // Stretching & Mobility
     "Foam Rolling - Full Body": {
-        videoId: "SxQkZK2hk-0",
-        start: 45,  // Jump to demo at 0:45
+        videoId: "t_P0r8D4xKg",
+        start: 30,
         cues: ["Roll slowly - 1 inch per second", "Pause on tender spots 30 sec", "Never roll on joints"]
     },
     "Hip Flexor Stretch": {
-        videoId: "YQmpO9VT2X4",
-        start: 15,
+        videoId: "eFxBqfcBULo",
+        start: 10,
         cues: ["Back knee on pad", "Squeeze back glute", "Torso upright"]
     },
     "Pigeon Pose": {
-        videoId: "o41jzyL3Wh4",
-        start: 20,
+        videoId: "0r9s6w4Pvk4",
+        start: 15,
         cues: ["Square hips forward", "Walk hands forward to deepen", "Breathe into stretch"]
     },
     "Cat-Cow Flow": {
         videoId: "kqnua4rHVVA",
-        start: 8,
+        start: 0,
         cues: ["Inhale = arch (cow)", "Exhale = round (cat)", "Move with breath"]
     },
     "World's Greatest Stretch": {
-        videoId: "IFpU2Fz7s6M",
-        start: 25,
+        videoId: "gvKYqWdvdzE",
+        start: 0,
         cues: ["Deep lunge", "Rotate toward front leg", "Reach to ceiling"]
     },
     "Light Walk or Bike": {
-        videoId: "JGvLfCCmYwQ",
+        videoId: "fJ8yT5ss_rc",
         start: 0,
         cues: ["Zone 1-2 heart rate", "15-30 minutes", "Active recovery"]
     },
     
     // Lower Body
     "Dynamic Warm-Up": {
-        videoId: "R0mMyV5OtcM",
-        start: 30,
+        videoId: "MqKnXqwfcmU",
+        start: 0,
         cues: ["Leg swings each direction", "Hip circles", "Increase range gradually"]
     },
     "Barbell Back Squat": {
-        videoId: "bEv6CCg2BC8",
-        start: 165,  // 2:45 - actual squat demo
+        videoId: "ultWZbUMPL8",
+        start: 0,
         cues: ["Bar on upper traps", "Knees track over toes", "Hip crease below knee"]
     },
     "Romanian Deadlift": {
-        videoId: "7j-2w4-P14I",
-        start: 85,  // 1:25 - form demo
+        videoId: "JCXUYuzwNrM",
+        start: 0,
         cues: ["Push hips BACK", "Bar close to legs", "Feel hamstring stretch"]
     },
     "Bulgarian Split Squats": {
         videoId: "2C-uNgKwPLE",
-        start: 60,  // 1:00
+        start: 30,
         cues: ["Back foot on bench", "Front knee over toes", "Torso upright"]
     },
     "Leg Press": {
         videoId: "IZxyjW7MPJQ",
-        start: 55,
+        start: 30,
         cues: ["Feet shoulder-width", "90° knee bend", "Don't lock knees"]
     },
     "Nordic Hamstring Curls": {
-        videoId: "d8AAPcYxHFo",
-        start: 30,
+        videoId: "BvMZP0GW9eA",
+        start: 0,
         cues: ["Anchor feet secure", "Hips extended", "Lower SLOWLY"]
     },
     "Standing Calf Raises": {
-        videoId: "gwLzBJYoWlI",
-        start: 35,
+        videoId: "3UWi44yN-wM",
+        start: 0,
         cues: ["Full range of motion", "Pause at top", "Slow negative"]
     },
     "Core: Plank Holds": {
         videoId: "ASdvN_XEl_c",
-        start: 20,
-        cues: ["Straight line head to heels", "Squeeze glutes + core", "Don't sag hips"]
-    },
-    
-    // Agility & Conditioning  
-    "Ladder Drills": {
-        videoId: "1AEM1bErdUo",
-        start: 15,
-        cues: ["Balls of feet", "Quick ground contact", "Arms drive movement"]
-    },
-    "Cone Agility - T-Drill": {
-        videoId: "1qGfcFbNZxM",
-        start: 25,
-        cues: ["Explosive first step", "Stay low", "Plant outside foot hard"]
-    },
-    "Box Jumps": {
-        videoId: "52r_Ul5k03g",
-        start: 40,
-        cues: ["Swing arms for power", "Land soft, bent knees", "Step down"]
-    },
-    "Interval Sprints": {
-        videoId: "vXttNI3kFj8",
-        start: 20,
-        cues: ["Drive arms hard", "High knee drive", "Full recovery between"]
-    },
-    "Shuttle Runs (5-10-5)": {
-        videoId: "DV_dGSqkpsc",
-        start: 35,
-        cues: ["Low athletic stance", "Plant hard on turns", "Sprint through finish"]
-    },
-    "Medicine Ball Slams": {
-        videoId: "iS3XiSKnl1w",
-        start: 15,
-        cues: ["Reach overhead", "Slam with CORE", "Squat to catch"]
-    },
-    "Cool Down Jog": {
-        videoId: "phn9UU3qXD0",
         start: 0,
-        cues: ["Very easy pace", "5-10 minutes", "Let heart rate drop"]
+        cues: ["Straight line head to heels", "Squeeze glutes + core", "Don't sag hips"]
     },
     
     // Upper Body
     "Warm-Up (Band Pull-Aparts)": {
-        videoId: "JObYtU7Y7ag",
-        start: 25,
+        videoId: "AWgFcXO01lk",
+        start: 0,
         cues: ["Arms straight", "Squeeze shoulder blades", "Control return"]
     },
     "Bench Press": {
-        videoId: "rT7DgCr-3pg",
-        start: 185,  // 3:05 - actual pressing
+        videoId: "gRVjAtPip0Y",
+        start: 0,
         cues: ["Retract shoulder blades", "Bar to mid-chest", "Drive feet into floor"]
     },
     "Bent Over Rows": {
         videoId: "FWJR5Ve8bnQ",
-        start: 95,  // 1:35
+        start: 60,
         cues: ["Hinge hips, flat back", "Pull elbows BACK", "Squeeze shoulder blades"]
     },
     "Overhead Press": {
-        videoId: "2yjwXTZQDDI",
-        start: 150,  // 2:30
+        videoId: "_RlRDWO2jfg",
+        start: 0,
         cues: ["Squeeze glutes + core", "Press straight up", "Lock out at top"]
     },
     "Lat Pulldowns": {
         videoId: "CAwf7n6Luuc",
-        start: 90,  // 1:30
+        start: 60,
         cues: ["Lean back slightly", "Pull to upper chest", "Squeeze lats"]
     },
     "Dumbbell Incline Press": {
         videoId: "8iPEnn-ltC8",
-        start: 60,
+        start: 30,
         cues: ["Bench 30-45°", "Press up and in", "Don't flare elbows"]
     },
     "Face Pulls": {
-        videoId: "rep-qVOkqgk",
-        start: 70,  // 1:10
+        videoId: "eIq5CB9JfKE",
+        start: 0,
         cues: ["Pull to EARS, not chest", "Externally rotate", "Squeeze rear delts"]
     },
     "Bicep Curls / Tricep Pushdowns": {
         videoId: "ykJmrZ5v0Oo",
-        start: 50,
+        start: 30,
         cues: ["Elbows pinned", "Full ROM", "No swinging"]
     },
     
-    // Cardio & Core
-    "Easy Jog Warm-Up": {
-        videoId: "brFHyOtTwH4",
-        start: 0,
-        cues: ["Conversation pace", "5-10 minutes", "Stay relaxed"]
-    },
-    "Tempo Run": {
-        videoId: "brFHyOtTwH4",
-        start: 0,
-        cues: ["Comfortably hard", "Short phrases only", "70-75% effort"]
-    },
+    // Core Exercises
     "Dead Bugs": {
         videoId: "I5xbsA71v1A",
-        start: 45,
+        start: 20,
         cues: ["Low back FLAT to floor", "Opposite arm/leg", "Exhale as you extend"]
     },
     "Russian Twists": {
         videoId: "wkD8rjkodUI",
-        start: 30,
+        start: 15,
         cues: ["Lean back slightly", "Rotate from CORE", "Touch ground each side"]
     },
     "Hollow Body Hold": {
         videoId: "LlDNef_Ztsc",
-        start: 35,
+        start: 20,
         cues: ["Low back glued down", "Banana shape", "Breathe steadily"]
     },
     "Side Plank": {
         videoId: "K2VljzCC16g",
-        start: 25,
+        start: 15,
         cues: ["Hips up high", "Body straight", "Elbow under shoulder"]
     },
     "Bicycle Crunches": {
-        videoId: "9FGilxCbdz8",
-        start: 20,
+        videoId: "1we3bh9uhqY",
+        start: 0,
         cues: ["Elbow to opposite knee", "Extend other leg", "Don't pull neck"]
+    },
+    "Plank Hold": {
+        videoId: "ASdvN_XEl_c",
+        start: 0,
+        cues: ["Straight line head to heels", "Squeeze glutes + core", "Don't sag hips"]
     },
     
     // Power Movements
     "Power Cleans": {
-        videoId: "GVt4uQ0sDJE",
-        start: 180,  // 3:00 - demo
+        videoId: "KbC6U-TPWJY",
+        start: 0,
         cues: ["Explosive hip extension", "Shrug + pull under", "Catch in front rack"]
     },
     "Front Squats": {
         videoId: "m4ytaCJZpl0",
-        start: 120,  // 2:00
+        start: 60,
         cues: ["Elbows HIGH", "More upright torso", "Push knees out"]
     },
     "Push Press": {
         videoId: "X6-DMh-t4nQ",
-        start: 70,
+        start: 40,
         cues: ["Dip with knees", "Explosive drive up", "Lock out overhead"]
     },
     "Weighted Pull-Ups": {
         videoId: "eGo4IYlbE5g",
-        start: 85,  // 1:25
+        start: 50,
         cues: ["Dead hang start", "Pull elbows to pockets", "Chin over bar"]
     },
     "Kettlebell Swings": {
         videoId: "YSxHifyI6s8",
-        start: 105,  // 1:45
+        start: 60,
         cues: ["HINGE, not squat", "Power from hip snap", "Squeeze glutes at top"]
     },
     "Single-Leg RDL": {
-        videoId: "Ej3Rr30xMqI",
-        start: 40,
+        videoId: "Dkqr5tLdEwY",
+        start: 0,
         cues: ["Slight knee bend", "Back leg goes straight back", "Hips stay square"]
     },
     "Farmer's Carry": {
-        videoId: "Fkzk_RqlYig",
-        start: 30,
+        videoId: "rt17lmnaLSM",
+        start: 0,
         cues: ["Stand tall", "Core braced", "Shoulders back"]
     },
     
-    // Saturday Options
-    "Option A: Pickup Soccer/Basketball": {
-        videoId: "R0mMyV5OtcM",
-        start: 30,
-        cues: ["Warm up first", "Stay hydrated", "Have fun!"]
-    },
-    "Option B: Long Easy Run": {
-        videoId: "brFHyOtTwH4",
-        start: 0,
-        cues: ["Conversation pace", "5-6 miles", "Enjoy it"]
-    },
-    "Option C: Hiking": {
-        videoId: "8xg3vE8Ie_E",
-        start: 0,
-        cues: ["Good footwear", "Bring water", "60+ minutes"]
-    },
+    // Recovery Options
     "Post-Activity Stretching": {
-        videoId: "SsT_go-oCcQ",
-        start: 60,
+        videoId: "sTxC3J3gQEU",
+        start: 0,
         cues: ["Hold 30-60 sec", "Focus on worked muscles", "Don't bounce"]
     },
     
     // Longevity & Mobility Exercises
     "90/90 Hip Stretch": {
-        videoId: "emPFT8U-lcc",
-        start: 30,
+        videoId: "XOu2fR4dKDA",
+        start: 0,
         cues: ["Front leg 90°, back leg 90°", "Sit tall, don't lean", "Breathe and relax into it"]
     },
     "Thoracic Spine Rotations": {
-        videoId: "0DlBm8DdZFg",
-        start: 25,
+        videoId: "NMqIJkVy-Uc",
+        start: 0,
         cues: ["Keep hips stable", "Rotate from mid-back", "Follow hand with eyes"]
     },
     "Shoulder CARS (Circles)": {
-        videoId: "oITK4ywlOcc",
-        start: 20,
+        videoId: "hCGJpTmb3xE",
+        start: 0,
         cues: ["Slow controlled circles", "Maximum range of motion", "Keep rest of body still"]
     },
     "Deep Squat Hold": {
-        videoId: "M5y7k5HSPGM",
-        start: 15,
+        videoId: "8_5Hm7yd5nQ",
+        start: 0,
         cues: ["Heels down if possible", "Knees out over toes", "Breathe and relax"]
     },
     "Gentle Walk": {
-        videoId: "brFHyOtTwH4",
+        videoId: "fJ8yT5ss_rc",
         start: 0,
         cues: ["Easy conversational pace", "Enjoy nature if possible", "15-30 minutes"]
     },
     "Hip Circles & Leg Swings": {
-        videoId: "R0mMyV5OtcM",
-        start: 30,
+        videoId: "MqKnXqwfcmU",
+        start: 0,
         cues: ["Controlled circles", "Front/back and side/side", "Wake up the hips"]
     },
     "Goblet Squat": {
         videoId: "MeIiIdhvXT4",
-        start: 45,
+        start: 0,
         cues: ["Hold weight at chest", "Elbows inside knees", "Sit deep between legs"]
     },
     "Walking Lunges": {
         videoId: "L8fvypPrzzs",
-        start: 30,
+        start: 15,
         cues: ["Long stride forward", "Back knee toward floor", "Keep torso upright"]
     },
     "Glute Bridge (weighted)": {
-        videoId: "OUgsJ8-Vi0E",
-        start: 25,
+        videoId: "wPM8icPu6H8",
+        start: 0,
         cues: ["Drive through heels", "Squeeze glutes at top", "Don't hyperextend back"]
     },
     "Single-Leg Calf Raises": {
-        videoId: "gwLzBJYoWlI",
-        start: 35,
+        videoId: "3UWi44yN-wM",
+        start: 0,
         cues: ["Full range of motion", "Pause at top", "Control the negative"]
     },
     "Push-Ups (or Bench Press)": {
-        videoId: "IODxDxX7oi4",
-        start: 40,
+        videoId: "_l3ySVKYVJ8",
+        start: 0,
         cues: ["Body straight as plank", "Elbows 45° from body", "Chest to floor"]
     },
     "Dumbbell Rows": {
-        videoId: "pYcpY20QaE8",
-        start: 35,
+        videoId: "roCP6wCXPqo",
+        start: 0,
         cues: ["Flat back, core tight", "Pull elbow to hip", "Squeeze shoulder blade"]
     },
     "Lat Pulldowns (or Pull-Ups)": {
         videoId: "CAwf7n6Luuc",
-        start: 90,
+        start: 60,
         cues: ["Lean back slightly", "Pull to upper chest", "Squeeze lats"]
     },
     "Shoulder Stretch": {
-        videoId: "GQ77Qq3JxuU",
-        start: 20,
+        videoId: "es5qXfVGp-U",
+        start: 0,
         cues: ["Cross body stretch", "Hold 30-60 seconds", "Both arms"]
     },
     "Bird Dogs": {
         videoId: "wiFNA3sqjCA",
-        start: 25,
+        start: 10,
         cues: ["Opposite arm and leg", "Keep back flat", "Slow and controlled"]
     },
     "Pallof Press (or hold)": {
-        videoId: "AH_QZLm_0-s",
-        start: 30,
+        videoId: "gsFHfML294I",
+        start: 0,
         cues: ["Resist rotation", "Press straight out", "Core stays tight"]
     },
-    "Kettlebell Swings": {
-        videoId: "YSxHifyI6s8",
-        start: 105,
-        cues: ["HINGE, not squat", "Power from hip snap", "Squeeze glutes at top"]
-    },
     "Goblet Squat to Press": {
-        videoId: "03gvHRwkPHc",
-        start: 20,
+        videoId: "elrjqHPvY44",
+        start: 0,
         cues: ["Squat deep", "Stand and press", "One fluid motion"]
     },
     "Push-Up to Row": {
-        videoId: "FaJPE35ORBw",
-        start: 25,
+        videoId: "i7gLUMnHKNQ",
+        start: 0,
         cues: ["Push-up, then row", "Keep hips stable", "Alternate arms"]
     },
     "Step-Ups": {
-        videoId: "dQqApCGd5Ss",
-        start: 30,
+        videoId: "WCFCdxzFBa4",
+        start: 0,
         cues: ["Drive through front foot", "Don't push off back leg", "Control the descent"]
     },
     "Turkish Get-Up": {
-        videoId: "0bWRPC49-KI",
-        start: 60,
+        videoId: "kHSJwnBLuC0",
+        start: 0,
         cues: ["Eyes on weight always", "Go SLOW", "Master each position"]
     },
     "Incline Dumbbell Press": {
         videoId: "8iPEnn-ltC8",
-        start: 60,
+        start: 30,
         cues: ["Bench 30-45°", "Press up and slightly in", "Don't flare elbows"]
     },
     "Seated Cable Row (or DB Row)": {
         videoId: "GZbfZ033f74",
-        start: 40,
+        start: 20,
         cues: ["Squeeze shoulder blades", "Pull to lower chest", "Control the return"]
     },
     "Arnold Press": {
         videoId: "3ml7BH7mNwQ",
-        start: 30,
+        start: 15,
         cues: ["Rotate as you press", "Palms face you at bottom", "Full lockout at top"]
     },
     "Chin-Ups (or Assisted)": {
-        videoId: "b-ztMQpj8yc",
-        start: 40,
+        videoId: "Hdc7Mw6BIEE",
+        start: 0,
         cues: ["Palms facing you", "Pull chin over bar", "Control the descent"]
     },
     "Tricep Dips (or Pushdowns)": {
-        videoId: "6kALZikXxLc",
-        start: 25,
+        videoId: "0326dy_-CzM",
+        start: 0,
         cues: ["Elbows stay tight", "Lower with control", "Full extension at top"]
     },
     "Dead Hang": {
-        videoId: "SILmJeNOF3g",
-        start: 20,
+        videoId: "lg5T0OZgjcY",
+        start: 0,
         cues: ["Relax and hang", "Shoulders away from ears", "Grip strength + spine decompression"]
     },
     "Option A: 30-45 min Walk": {
-        videoId: "brFHyOtTwH4",
+        videoId: "fJ8yT5ss_rc",
         start: 0,
         cues: ["Easy pace", "Outdoors if possible", "Enjoy it"]
     },
     "Option B: Easy Bike Ride": {
-        videoId: "JGvLfCCmYwQ",
+        videoId: "fJ8yT5ss_rc",
         start: 0,
         cues: ["Light effort", "30-45 minutes", "Zone 2 heart rate"]
     },
     "Option C: Swimming": {
-        videoId: "Wcx8qrlhnF0",
-        start: 30,
+        videoId: "gh5mAtmeR3Y",
+        start: 0,
         cues: ["Easy laps", "Great for joints", "Full body movement"]
     },
     "Option D: Yoga Class": {
@@ -410,34 +348,39 @@ const exerciseVideos = {
         cues: ["Any style works", "Focus on breath", "Mobility + mindfulness"]
     },
     "Option E: Recreational Sports": {
-        videoId: "R0mMyV5OtcM",
-        start: 30,
+        videoId: "MqKnXqwfcmU",
+        start: 0,
         cues: ["Play for fun", "Not competition", "Move and enjoy"]
     },
     "Light Stretching": {
-        videoId: "SsT_go-oCcQ",
-        start: 60,
+        videoId: "sTxC3J3gQEU",
+        start: 0,
         cues: ["Hold 30+ seconds", "Breathe deeply", "No bouncing"]
     },
     "Brisk Walk or Light Jog": {
-        videoId: "brFHyOtTwH4",
+        videoId: "fJ8yT5ss_rc",
         start: 0,
         cues: ["Conversational pace", "Zone 2 heart rate", "Sustainable effort"]
     },
     "Cat-Cow Cooldown": {
         videoId: "kqnua4rHVVA",
-        start: 8,
+        start: 0,
         cues: ["Slow and controlled", "Sync with breath", "Release tension"]
     },
     "Stretch: Hips & Shoulders": {
-        videoId: "SsT_go-oCcQ",
-        start: 60,
+        videoId: "sTxC3J3gQEU",
+        start: 0,
         cues: ["Hit tight areas", "Hold each stretch 30 sec", "Breathe and relax"]
     },
     "Arm Circles & Band Warm-Up": {
-        videoId: "JObYtU7Y7ag",
-        start: 25,
+        videoId: "AWgFcXO01lk",
+        start: 0,
         cues: ["Small to large circles", "Both directions", "Get blood flowing"]
+    },
+    "Band Pull-Aparts": {
+        videoId: "AWgFcXO01lk",
+        start: 0,
+        cues: ["Arms straight at shoulder height", "Squeeze shoulder blades", "Control return"]
     }
 };
 
