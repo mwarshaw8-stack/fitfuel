@@ -151,6 +151,111 @@ body {
     transition: var(--transition-fast);
 }
 
+/* Auth Section */
+.auth-section {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.sign-in-btn {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: 8px 16px;
+    background: var(--bg-elevated);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.sign-in-btn:hover {
+    background: var(--bg-card);
+    border-color: var(--primary);
+}
+
+.google-icon {
+    width: 18px;
+    height: 18px;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.user-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid var(--primary);
+}
+
+.sign-out-btn {
+    padding: 6px 12px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.sign-out-btn:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.sync-indicator {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.7rem;
+    color: var(--secondary);
+}
+
+.sync-indicator::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: var(--secondary);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* Mobile Auth */
+@media (max-width: 768px) {
+    .auth-section {
+        position: absolute;
+        right: 60px;
+    }
+    
+    .sign-in-btn span:not(.google-icon) {
+        display: none;
+    }
+    
+    .sign-in-btn {
+        padding: 8px;
+    }
+    
+    .sign-out-btn {
+        display: none;
+    }
+}
+
 /* Mobile Navigation */
 .mobile-nav {
     display: none;

@@ -8,6 +8,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 </head>
 <body>
     <div class="app-container">
@@ -23,6 +27,16 @@
                 <a href="#meals" class="nav-link" data-section="meals">Meals</a>
                 <a href="#grocery" class="nav-link" data-section="grocery">Grocery</a>
                 <a href="#progress" class="nav-link" data-section="progress">Progress</a>
+            </div>
+            <div class="auth-section">
+                <button class="sign-in-btn" id="signInBtn">
+                    <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" class="google-icon">
+                    Sign In
+                </button>
+                <div class="user-profile" id="userProfile" style="display: none;">
+                    <img class="user-avatar" id="userAvatar" src="" alt="User">
+                    <button class="sign-out-btn" id="signOutBtn">Sign Out</button>
+                </div>
             </div>
             <button class="menu-toggle" aria-label="Toggle menu">
                 <span></span>

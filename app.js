@@ -2,6 +2,25 @@
 // FITFUEL - Personal Training & Nutrition
 // ========================================
 
+// Firebase Configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyD_xSAwpAcF-IOXGnlB04oozuByiqle_aU",
+    authDomain: "fitfuel-98937.firebaseapp.com",
+    projectId: "fitfuel-98937",
+    storageBucket: "fitfuel-98937.firebasestorage.app",
+    messagingSenderId: "329250192382",
+    appId: "1:329250192382:web:fc13887d6772020b415eaf",
+    measurementId: "G-NQPPGDKLR2"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
+
+// Current user
+let currentUser = null;
+
 // Exercise Database - Verified working YouTube videos + form cues
 const exerciseVideos = {
     // Stretching & Mobility
@@ -693,16 +712,175 @@ const quotes = [
     '"The harder you work, the luckier you get."'
 ];
 
-// App State
+// App State - Initialize with defaults, will load from localStorage or Firestore
 let state = {
     currentSection: 'dashboard',
     selectedDay: new Date().getDay(),
-    streak: parseInt(localStorage.getItem('fitfuel_streak') || '0'),
-    lastCheckIn: localStorage.getItem('fitfuel_lastCheckIn'),
-    completedWorkouts: JSON.parse(localStorage.getItem('fitfuel_workouts') || '{}'),
-    completedMeals: JSON.parse(localStorage.getItem('fitfuel_meals') || '{}'),
-    notes: localStorage.getItem('fitfuel_notes') || ''
+    streak: 0,
+    lastCheckIn: null,
+    completedWorkouts: {},
+    completedMeals: {},
+    notes: '',
+    groceryChecked: []
 };
+
+// Load state from localStorage (fallback when not signed in)
+function loadLocalState() {
+    state.streak = parseInt(localStorage.getItem('fitfuel_streak') || '0');
+    state.lastCheckIn = localStorage.getItem('fitfuel_lastCheckIn');
+    state.completedWorkouts = JSON.parse(localStorage.getItem('fitfuel_workouts') || '{}');
+    state.completedMeals = JSON.parse(localStorage.getItem('fitfuel_meals') || '{}');
+    state.notes = localStorage.getItem('fitfuel_notes') || '';
+    state.groceryChecked = JSON.parse(localStorage.getItem('fitfuel_groceryChecked') || '[]');
+}
+
+// Save state to localStorage
+function saveLocalState() {
+    localStorage.setItem('fitfuel_streak', state.streak);
+    localStorage.setItem('fitfuel_lastCheckIn', state.lastCheckIn || '');
+    localStorage.setItem('fitfuel_workouts', JSON.stringify(state.completedWorkouts));
+    localStorage.setItem('fitfuel_meals', JSON.stringify(state.completedMeals));
+    localStorage.setItem('fitfuel_notes', state.notes);
+    localStorage.setItem('fitfuel_groceryChecked', JSON.stringify(state.groceryChecked));
+}
+
+// Load state from Firestore (when signed in)
+async function loadCloudState() {
+    if (!currentUser) return;
+    
+    try {
+        const doc = await db.collection('users').doc(currentUser.uid).get();
+        if (doc.exists) {
+            const data = doc.data();
+            state.streak = data.streak || 0;
+            state.lastCheckIn = data.lastCheckIn || null;
+            state.completedWorkouts = data.completedWorkouts || {};
+            state.completedMeals = data.completedMeals || {};
+            state.notes = data.notes || '';
+            state.groceryChecked = data.groceryChecked || [];
+            
+            // Update UI with loaded state
+            refreshAllUI();
+            console.log('✅ Data loaded from cloud');
+        } else {
+            // First time user - save current local state to cloud
+            await saveCloudState();
+        }
+    } catch (error) {
+        console.error('Error loading cloud state:', error);
+    }
+}
+
+// Save state to Firestore
+async function saveCloudState() {
+    if (!currentUser) return;
+    
+    try {
+        await db.collection('users').doc(currentUser.uid).set({
+            streak: state.streak,
+            lastCheckIn: state.lastCheckIn,
+            completedWorkouts: state.completedWorkouts,
+            completedMeals: state.completedMeals,
+            notes: state.notes,
+            groceryChecked: state.groceryChecked,
+            lastUpdated: firebase.firestore.FieldValue.serverTimestamp()
+        });
+        console.log('✅ Data saved to cloud');
+    } catch (error) {
+        console.error('Error saving to cloud:', error);
+    }
+}
+
+// Save state (to both local and cloud if signed in)
+function saveState() {
+    saveLocalState();
+    if (currentUser) {
+        saveCloudState();
+    }
+}
+
+// Refresh all UI elements with current state
+function refreshAllUI() {
+    // Update streak display
+    document.getElementById('streakCount').textContent = state.streak;
+    document.getElementById('currentStreak').textContent = state.streak;
+    
+    // Update check-in button
+    const today = new Date().toDateString();
+    const checkInBtn = document.getElementById('checkInBtn');
+    if (state.lastCheckIn === today) {
+        checkInBtn.textContent = '✓ Checked In!';
+        checkInBtn.classList.add('checked');
+        checkInBtn.disabled = true;
+    } else {
+        checkInBtn.textContent = '✓ Check In Today';
+        checkInBtn.classList.remove('checked');
+        checkInBtn.disabled = false;
+    }
+    
+    // Update progress
+    updateProgressDisplay();
+    
+    // Update notes
+    document.getElementById('progressNotes').value = state.notes;
+    
+    // Update grocery list
+    updateGroceryDisplay();
+    
+    // Update stats
+    document.getElementById('totalWorkouts').textContent = Object.keys(state.completedWorkouts).length;
+    document.getElementById('totalMeals').textContent = Object.keys(state.completedMeals).length;
+}
+
+// Auth state listener
+auth.onAuthStateChanged(async (user) => {
+    currentUser = user;
+    const signInBtn = document.getElementById('signInBtn');
+    const userProfile = document.getElementById('userProfile');
+    const userAvatar = document.getElementById('userAvatar');
+    
+    if (user) {
+        // User is signed in
+        signInBtn.style.display = 'none';
+        userProfile.style.display = 'flex';
+        userAvatar.src = user.photoURL || 'https://via.placeholder.com/36';
+        
+        // Load data from cloud
+        await loadCloudState();
+        
+        console.log('👤 Signed in as:', user.displayName);
+    } else {
+        // User is signed out
+        signInBtn.style.display = 'flex';
+        userProfile.style.display = 'none';
+        
+        // Load data from localStorage
+        loadLocalState();
+        refreshAllUI();
+        
+        console.log('👤 Signed out - using local storage');
+    }
+});
+
+// Sign in with Google
+async function signInWithGoogle() {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    try {
+        await auth.signInWithPopup(provider);
+    } catch (error) {
+        console.error('Sign in error:', error);
+        alert('Sign in failed. Please try again.');
+    }
+}
+
+// Sign out
+async function signOut() {
+    try {
+        await auth.signOut();
+    } catch (error) {
+        console.error('Sign out error:', error);
+    }
+}
 
 // Grocery List - Categorized ingredients with Kroger prices (~$70 budget)
 const groceryCategories = {
@@ -764,6 +942,7 @@ function calculateGroceryTotal() {
 
 // Initialize App
 document.addEventListener('DOMContentLoaded', () => {
+    initAuth();
     initNavigation();
     initDaySelectors();
     initDashboard();
@@ -773,6 +952,20 @@ document.addEventListener('DOMContentLoaded', () => {
     updateWorkoutDisplay(state.selectedDay);
     updateMealDisplay(state.selectedDay);
 });
+
+// Initialize Auth Buttons
+function initAuth() {
+    const signInBtn = document.getElementById('signInBtn');
+    const signOutBtn = document.getElementById('signOutBtn');
+    
+    if (signInBtn) {
+        signInBtn.addEventListener('click', signInWithGoogle);
+    }
+    
+    if (signOutBtn) {
+        signOutBtn.addEventListener('click', signOut);
+    }
+}
 
 // Navigation
 function initNavigation() {
@@ -868,11 +1061,11 @@ function initDashboard() {
         if (state.lastCheckIn !== today) {
             state.streak++;
             state.lastCheckIn = today;
-            localStorage.setItem('fitfuel_streak', state.streak);
-            localStorage.setItem('fitfuel_lastCheckIn', today);
+            saveState();
             updateStreakDisplay();
             checkInBtn.textContent = '✓ Checked In!';
             checkInBtn.classList.add('checked');
+            checkInBtn.disabled = true;
         }
     });
 }
@@ -1002,8 +1195,35 @@ function initVideoModal() {
 
 // Grocery List Functions
 function initGroceryList() {
+    updateGroceryDisplay();
+    
+    // Add click handlers
+    document.querySelectorAll('.grocery-item').forEach(item => {
+        item.addEventListener('click', () => {
+            toggleGroceryItem(item);
+        });
+    });
+    
+    // Clear checked button
+    document.getElementById('clearChecked').addEventListener('click', () => {
+        state.groceryChecked = [];
+        saveState();
+        document.querySelectorAll('.grocery-item.checked').forEach(item => {
+            item.classList.remove('checked');
+        });
+        updateGroceryCount();
+    });
+    
+    // Copy list button
+    document.getElementById('copyList').addEventListener('click', () => {
+        copyGroceryList();
+    });
+}
+
+// Update grocery list display
+function updateGroceryDisplay() {
     const groceryListEl = document.getElementById('groceryList');
-    const checkedItems = JSON.parse(localStorage.getItem('fitfuel_groceryChecked') || '[]');
+    const checkedItems = state.groceryChecked || [];
     
     let totalItems = 0;
     let html = '';
@@ -1042,46 +1262,31 @@ function initGroceryList() {
     
     groceryListEl.innerHTML = html;
     
-    // Update totals
-    document.getElementById('totalItems').textContent = totalItems;
-    document.getElementById('estimatedCost').textContent = `$${calculateGroceryTotal()}`;
-    updateGroceryCount();
-    
-    // Add click handlers
+    // Re-attach click handlers after rebuilding
     document.querySelectorAll('.grocery-item').forEach(item => {
         item.addEventListener('click', () => {
             toggleGroceryItem(item);
         });
     });
     
-    // Clear checked button
-    document.getElementById('clearChecked').addEventListener('click', () => {
-        localStorage.setItem('fitfuel_groceryChecked', '[]');
-        document.querySelectorAll('.grocery-item.checked').forEach(item => {
-            item.classList.remove('checked');
-        });
-        updateGroceryCount();
-    });
-    
-    // Copy list button
-    document.getElementById('copyList').addEventListener('click', () => {
-        copyGroceryList();
-    });
+    // Update totals
+    document.getElementById('totalItems').textContent = totalItems;
+    document.getElementById('estimatedCost').textContent = `$${calculateGroceryTotal()}`;
+    updateGroceryCount();
 }
 
 function toggleGroceryItem(item) {
     const itemId = item.dataset.id;
-    let checkedItems = JSON.parse(localStorage.getItem('fitfuel_groceryChecked') || '[]');
     
     if (item.classList.contains('checked')) {
         item.classList.remove('checked');
-        checkedItems = checkedItems.filter(id => id !== itemId);
+        state.groceryChecked = state.groceryChecked.filter(id => id !== itemId);
     } else {
         item.classList.add('checked');
-        checkedItems.push(itemId);
+        state.groceryChecked.push(itemId);
     }
     
-    localStorage.setItem('fitfuel_groceryChecked', JSON.stringify(checkedItems));
+    saveState();
     updateGroceryCount();
 }
 
@@ -1162,8 +1367,15 @@ function initProgress() {
     
     document.getElementById('saveNotes').addEventListener('click', () => {
         state.notes = notesArea.value;
-        localStorage.setItem('fitfuel_notes', state.notes);
-        alert('Notes saved!');
+        saveState();
+        
+        // Show save confirmation
+        const btn = document.getElementById('saveNotes');
+        const originalText = btn.textContent;
+        btn.textContent = '✓ Saved!';
+        setTimeout(() => {
+            btn.textContent = originalText;
+        }, 2000);
     });
 }
 
@@ -1177,11 +1389,7 @@ function toggleCompletion(day, type) {
         storage[key] = true;
     }
     
-    localStorage.setItem(
-        type === 'workout' ? 'fitfuel_workouts' : 'fitfuel_meals',
-        JSON.stringify(storage)
-    );
-    
+    saveState();
     updateProgressDisplay();
 }
 
