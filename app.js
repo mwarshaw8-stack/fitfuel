@@ -721,8 +721,21 @@ let state = {
     completedWorkouts: {},
     completedMeals: {},
     notes: '',
-    groceryChecked: []
+    groceryChecked: [],
+    workoutLogs: {} // Format: { "2024-01-14": { day: 0, exercises: { "Goblet Squat": { weight: 35, notes: "" }, ... } } }
 };
+
+// Exercises that should have weight tracking (strength movements)
+const weightedExercises = [
+    "Goblet Squat", "Romanian Deadlift", "Walking Lunges", "Glute Bridge (weighted)",
+    "Push-Ups (or Bench Press)", "Dumbbell Rows", "Overhead Press", "Lat Pulldowns (or Pull-Ups)",
+    "Face Pulls", "Farmer's Carry", "Kettlebell Swings", "Goblet Squat to Press",
+    "Push-Up to Row", "Step-Ups", "Turkish Get-Up", "Incline Dumbbell Press",
+    "Seated Cable Row (or DB Row)", "Arnold Press", "Chin-Ups (or Assisted)", "Tricep Dips (or Pushdowns)",
+    "Barbell Back Squat", "Bulgarian Split Squats", "Leg Press", "Bench Press",
+    "Bent Over Rows", "Power Cleans", "Front Squats", "Push Press", "Weighted Pull-Ups",
+    "Single-Leg RDL", "Glute Bridges"
+];
 
 // Load state from localStorage (fallback when not signed in)
 function loadLocalState() {
@@ -732,6 +745,7 @@ function loadLocalState() {
     state.completedMeals = JSON.parse(localStorage.getItem('fitfuel_meals') || '{}');
     state.notes = localStorage.getItem('fitfuel_notes') || '';
     state.groceryChecked = JSON.parse(localStorage.getItem('fitfuel_groceryChecked') || '[]');
+    state.workoutLogs = JSON.parse(localStorage.getItem('fitfuel_workoutLogs') || '{}');
 }
 
 // Save state to localStorage
@@ -742,6 +756,7 @@ function saveLocalState() {
     localStorage.setItem('fitfuel_meals', JSON.stringify(state.completedMeals));
     localStorage.setItem('fitfuel_notes', state.notes);
     localStorage.setItem('fitfuel_groceryChecked', JSON.stringify(state.groceryChecked));
+    localStorage.setItem('fitfuel_workoutLogs', JSON.stringify(state.workoutLogs));
 }
 
 // Load state from Firestore (when signed in)
@@ -758,6 +773,7 @@ async function loadCloudState() {
             state.completedMeals = data.completedMeals || {};
             state.notes = data.notes || '';
             state.groceryChecked = data.groceryChecked || [];
+            state.workoutLogs = data.workoutLogs || {};
             
             // Update UI with loaded state
             refreshAllUI();
@@ -783,6 +799,7 @@ async function saveCloudState() {
             completedMeals: state.completedMeals,
             notes: state.notes,
             groceryChecked: state.groceryChecked,
+            workoutLogs: state.workoutLogs,
             lastUpdated: firebase.firestore.FieldValue.serverTimestamp()
         });
         console.log('✅ Data saved to cloud');
@@ -1081,6 +1098,9 @@ function updateStreakDisplay() {
 // Workout Display
 function updateWorkoutDisplay(day) {
     const workout = workouts[day];
+    const today = new Date().toISOString().split('T')[0];
+    const todayLog = state.workoutLogs[today] || { exercises: {} };
+    const isToday = day === new Date().getDay();
     
     document.getElementById('workoutTitle').textContent = workout.name;
     document.getElementById('workoutDuration').textContent = `⏱️ ${workout.duration} min`;
@@ -1088,13 +1108,30 @@ function updateWorkoutDisplay(day) {
     
     const exerciseList = document.getElementById('exerciseList');
     exerciseList.innerHTML = workout.exercises.map((ex, i) => {
+        const isWeighted = weightedExercises.includes(ex.name);
+        const savedWeight = todayLog.exercises[ex.name]?.weight || '';
+        const lastWeight = getLastWeight(ex.name);
+        
         return `
-            <div class="exercise-item">
+            <div class="exercise-item ${isWeighted ? 'has-weight' : ''}">
                 <span class="exercise-number">${i + 1}</span>
                 <div class="exercise-info">
                     <div class="exercise-name">${ex.name}</div>
                     <div class="exercise-detail">${ex.detail}</div>
+                    ${isWeighted && lastWeight ? `<div class="last-weight">Last: ${lastWeight} lbs</div>` : ''}
                 </div>
+                ${isWeighted && isToday ? `
+                    <div class="weight-input-container">
+                        <input type="number" 
+                            class="weight-input" 
+                            data-exercise="${ex.name}" 
+                            placeholder="lbs" 
+                            value="${savedWeight}"
+                            min="0" 
+                            step="5">
+                        <span class="weight-label">lbs</span>
+                    </div>
+                ` : ''}
                 <button class="form-video-btn" data-exercise="${ex.name}" title="Watch form tutorial">
                     <span class="video-icon">▶</span>
                     <span class="video-text">Form</span>
@@ -1102,6 +1139,22 @@ function updateWorkoutDisplay(day) {
             </div>
         `;
     }).join('');
+    
+    // Add Complete Workout button for today
+    const workoutNotes = document.getElementById('workoutNotes');
+    const isCompleted = todayLog.completed;
+    
+    workoutNotes.innerHTML = `
+        <strong>💡 Pro Tip:</strong> ${workout.notes}
+        ${isToday ? `
+            <div class="complete-workout-section">
+                <button class="complete-workout-btn ${isCompleted ? 'completed' : ''}" id="completeWorkoutBtn">
+                    ${isCompleted ? '✓ Workout Completed!' : '✓ Complete Workout'}
+                </button>
+                ${isCompleted ? `<span class="completed-time">Completed ${new Date(todayLog.completedAt).toLocaleTimeString()}</span>` : ''}
+            </div>
+        ` : ''}
+    `;
     
     // Add click handlers to form buttons
     document.querySelectorAll('.form-video-btn').forEach(btn => {
@@ -1111,7 +1164,131 @@ function updateWorkoutDisplay(day) {
         });
     });
     
-    document.getElementById('workoutNotes').innerHTML = `<strong>💡 Pro Tip:</strong> ${workout.notes}`;
+    // Add weight input listeners
+    document.querySelectorAll('.weight-input').forEach(input => {
+        input.addEventListener('change', () => {
+            saveWeightInput(input.dataset.exercise, input.value);
+        });
+        input.addEventListener('blur', () => {
+            saveWeightInput(input.dataset.exercise, input.value);
+        });
+    });
+    
+    // Add complete workout button listener
+    const completeBtn = document.getElementById('completeWorkoutBtn');
+    if (completeBtn) {
+        completeBtn.addEventListener('click', completeWorkout);
+    }
+}
+
+// Get last recorded weight for an exercise
+function getLastWeight(exerciseName) {
+    const logs = Object.entries(state.workoutLogs)
+        .filter(([date, log]) => log.exercises && log.exercises[exerciseName]?.weight)
+        .sort((a, b) => new Date(b[0]) - new Date(a[0]));
+    
+    if (logs.length > 0) {
+        return logs[0][1].exercises[exerciseName].weight;
+    }
+    return null;
+}
+
+// Save weight input
+function saveWeightInput(exerciseName, weight) {
+    const today = new Date().toISOString().split('T')[0];
+    
+    if (!state.workoutLogs[today]) {
+        state.workoutLogs[today] = {
+            day: new Date().getDay(),
+            exercises: {},
+            completed: false
+        };
+    }
+    
+    if (!state.workoutLogs[today].exercises[exerciseName]) {
+        state.workoutLogs[today].exercises[exerciseName] = {};
+    }
+    
+    state.workoutLogs[today].exercises[exerciseName].weight = weight ? parseInt(weight) : null;
+    saveState();
+}
+
+// Complete workout
+function completeWorkout() {
+    const today = new Date().toISOString().split('T')[0];
+    const todayNum = new Date().getDay();
+    
+    if (!state.workoutLogs[today]) {
+        state.workoutLogs[today] = {
+            day: todayNum,
+            exercises: {},
+            completed: false
+        };
+    }
+    
+    // Collect all weights
+    document.querySelectorAll('.weight-input').forEach(input => {
+        const exerciseName = input.dataset.exercise;
+        const weight = input.value;
+        if (weight) {
+            if (!state.workoutLogs[today].exercises[exerciseName]) {
+                state.workoutLogs[today].exercises[exerciseName] = {};
+            }
+            state.workoutLogs[today].exercises[exerciseName].weight = parseInt(weight);
+        }
+    });
+    
+    state.workoutLogs[today].completed = true;
+    state.workoutLogs[today].completedAt = new Date().toISOString();
+    state.workoutLogs[today].workoutName = workouts[todayNum].name;
+    
+    // Also mark in completedWorkouts for the progress tracker
+    state.completedWorkouts[`${todayNum}-workout`] = true;
+    
+    saveState();
+    
+    // Update button
+    const btn = document.getElementById('completeWorkoutBtn');
+    btn.textContent = '✓ Workout Completed!';
+    btn.classList.add('completed');
+    
+    // Show confirmation
+    showWorkoutCompletedModal();
+    
+    // Update progress display
+    updateProgressDisplay();
+}
+
+// Show workout completed confirmation
+function showWorkoutCompletedModal() {
+    const today = new Date().toISOString().split('T')[0];
+    const log = state.workoutLogs[today];
+    
+    // Count exercises with weights logged
+    const weightsLogged = Object.values(log.exercises || {}).filter(e => e.weight).length;
+    
+    // Create and show a nice completion message
+    const modal = document.createElement('div');
+    modal.className = 'workout-complete-modal';
+    modal.innerHTML = `
+        <div class="complete-modal-content">
+            <div class="complete-icon">💪</div>
+            <h3>Workout Complete!</h3>
+            <p>${log.workoutName}</p>
+            <p class="weights-logged">${weightsLogged} exercises logged</p>
+            <button class="close-complete-modal">Nice!</button>
+        </div>
+    `;
+    document.body.appendChild(modal);
+    
+    // Auto-remove after click or 3 seconds
+    const closeModal = () => {
+        modal.classList.add('fade-out');
+        setTimeout(() => modal.remove(), 300);
+    };
+    
+    modal.querySelector('.close-complete-modal').addEventListener('click', closeModal);
+    setTimeout(closeModal, 3000);
 }
 
 // Quick Reference Modal Functions
