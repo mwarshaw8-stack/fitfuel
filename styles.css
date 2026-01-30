@@ -770,6 +770,56 @@ body {
     color: var(--text-muted);
 }
 
+.last-weight-info {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 4px;
+    padding: 4px 8px;
+    background: rgba(0, 229, 255, 0.1);
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+}
+
+.last-weight-label {
+    color: var(--text-muted);
+    font-size: 0.7rem;
+}
+
+.last-weight-value {
+    color: var(--secondary);
+    font-weight: 600;
+}
+
+.last-weight-date {
+    color: var(--text-muted);
+    font-size: 0.65rem;
+}
+
+.use-last-weight-btn {
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    background: rgba(0, 229, 255, 0.15);
+    border: 1px solid var(--secondary);
+    border-radius: var(--radius-sm);
+    color: var(--secondary);
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.use-last-weight-btn:hover {
+    background: var(--secondary);
+    color: var(--bg-dark);
+    transform: scale(1.1);
+}
+
 .last-weight {
     font-size: 0.7rem;
     color: var(--secondary);
@@ -919,6 +969,22 @@ body {
     .complete-workout-btn {
         width: 100%;
         padding: 12px 24px;
+    }
+    
+    .last-weight-info {
+        flex-wrap: wrap;
+        font-size: 0.7rem;
+    }
+    
+    .last-weight-date {
+        width: 100%;
+        margin-top: 2px;
+    }
+    
+    .use-last-weight-btn {
+        width: 24px;
+        height: 24px;
+        font-size: 0.85rem;
     }
 }
 

@@ -1125,6 +1125,7 @@ function updateWorkoutDisplay(day) {
         const isWeighted = weightedExercises.includes(ex.name);
         const savedWeight = selectedLog.exercises[ex.name]?.weight || '';
         const lastWeight = getLastWeight(ex.name);
+        const lastWeightDate = getLastWeightDate(ex.name);
         
         return `
             <div class="exercise-item ${isWeighted ? 'has-weight' : ''}">
@@ -1132,7 +1133,13 @@ function updateWorkoutDisplay(day) {
                 <div class="exercise-info">
                     <div class="exercise-name">${ex.name}</div>
                     <div class="exercise-detail">${ex.detail}</div>
-                    ${isWeighted && lastWeight ? `<div class="last-weight">Last: ${lastWeight} lbs</div>` : ''}
+                    ${isWeighted && lastWeight ? `
+                        <div class="last-weight-info">
+                            <span class="last-weight-label">Last time:</span>
+                            <span class="last-weight-value">${lastWeight} lbs</span>
+                            ${lastWeightDate ? `<span class="last-weight-date">(${lastWeightDate})</span>` : ''}
+                        </div>
+                    ` : ''}
                 </div>
                 ${isWeighted ? `
                     <div class="weight-input-container">
@@ -1140,11 +1147,19 @@ function updateWorkoutDisplay(day) {
                             class="weight-input" 
                             data-exercise="${ex.name}"
                             data-date="${selectedDate}"
-                            placeholder="lbs" 
+                            placeholder="${lastWeight ? `Last: ${lastWeight}` : 'lbs'}" 
                             value="${savedWeight}"
                             min="0" 
                             step="5">
                         <span class="weight-label">lbs</span>
+                        ${lastWeight && !savedWeight ? `
+                            <button class="use-last-weight-btn" 
+                                data-exercise="${ex.name}" 
+                                data-weight="${lastWeight}"
+                                title="Use last weight">
+                                ↻
+                            </button>
+                        ` : ''}
                     </div>
                 ` : ''}
                 <button class="form-video-btn" data-exercise="${ex.name}" title="Watch form tutorial">
@@ -1188,6 +1203,22 @@ function updateWorkoutDisplay(day) {
         });
     });
     
+    // Add "use last weight" button listeners
+    document.querySelectorAll('.use-last-weight-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const exerciseName = btn.dataset.exercise;
+            const weight = btn.dataset.weight;
+            const date = btn.closest('.exercise-item').querySelector('.weight-input').dataset.date;
+            const input = document.querySelector(`.weight-input[data-exercise="${exerciseName}"][data-date="${date}"]`);
+            
+            if (input) {
+                input.value = weight;
+                saveWeightInput(exerciseName, weight, date);
+                btn.style.display = 'none'; // Hide button after use
+            }
+        });
+    });
+    
     // Add complete workout button listener
     const completeBtn = document.getElementById('completeWorkoutBtn');
     if (completeBtn) {
@@ -1205,6 +1236,27 @@ function getLastWeight(exerciseName) {
     
     if (logs.length > 0) {
         return logs[0][1].exercises[exerciseName].weight;
+    }
+    return null;
+}
+
+// Get date of last recorded weight
+function getLastWeightDate(exerciseName) {
+    const logs = Object.entries(state.workoutLogs)
+        .filter(([date, log]) => log.exercises && log.exercises[exerciseName]?.weight)
+        .sort((a, b) => new Date(b[0]) - new Date(a[0]));
+    
+    if (logs.length > 0) {
+        const date = logs[0][0];
+        const dateObj = new Date(date);
+        const today = new Date();
+        const diffTime = today - dateObj;
+        const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+        
+        if (diffDays === 0) return 'Today';
+        if (diffDays === 1) return 'Yesterday';
+        if (diffDays < 7) return `${diffDays} days ago`;
+        return dateObj.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
     }
     return null;
 }
