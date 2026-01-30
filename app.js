@@ -1095,11 +1095,25 @@ function updateStreakDisplay() {
     }
 }
 
+// Get date for selected day (this week's occurrence)
+function getDateForDay(dayOfWeek) {
+    const today = new Date();
+    const currentDay = today.getDay();
+    const diff = dayOfWeek - currentDay;
+    
+    // If selecting a day in the past, go to last week's occurrence
+    // If selecting today or future, use this week
+    const targetDate = new Date(today);
+    targetDate.setDate(today.getDate() + diff);
+    
+    return targetDate.toISOString().split('T')[0];
+}
+
 // Workout Display
 function updateWorkoutDisplay(day) {
     const workout = workouts[day];
-    const today = new Date().toISOString().split('T')[0];
-    const todayLog = state.workoutLogs[today] || { exercises: {} };
+    const selectedDate = getDateForDay(day);
+    const selectedLog = state.workoutLogs[selectedDate] || { exercises: {} };
     const isToday = day === new Date().getDay();
     
     document.getElementById('workoutTitle').textContent = workout.name;
@@ -1109,7 +1123,7 @@ function updateWorkoutDisplay(day) {
     const exerciseList = document.getElementById('exerciseList');
     exerciseList.innerHTML = workout.exercises.map((ex, i) => {
         const isWeighted = weightedExercises.includes(ex.name);
-        const savedWeight = todayLog.exercises[ex.name]?.weight || '';
+        const savedWeight = selectedLog.exercises[ex.name]?.weight || '';
         const lastWeight = getLastWeight(ex.name);
         
         return `
@@ -1120,11 +1134,12 @@ function updateWorkoutDisplay(day) {
                     <div class="exercise-detail">${ex.detail}</div>
                     ${isWeighted && lastWeight ? `<div class="last-weight">Last: ${lastWeight} lbs</div>` : ''}
                 </div>
-                ${isWeighted && isToday ? `
+                ${isWeighted ? `
                     <div class="weight-input-container">
                         <input type="number" 
                             class="weight-input" 
-                            data-exercise="${ex.name}" 
+                            data-exercise="${ex.name}"
+                            data-date="${selectedDate}"
                             placeholder="lbs" 
                             value="${savedWeight}"
                             min="0" 
@@ -1140,20 +1155,19 @@ function updateWorkoutDisplay(day) {
         `;
     }).join('');
     
-    // Add Complete Workout button for today
+    // Add Complete Workout button for any day
     const workoutNotes = document.getElementById('workoutNotes');
-    const isCompleted = todayLog.completed;
+    const isCompleted = selectedLog.completed;
+    const dateDisplay = isToday ? 'today' : new Date(selectedDate).toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' });
     
     workoutNotes.innerHTML = `
         <strong>💡 Pro Tip:</strong> ${workout.notes}
-        ${isToday ? `
-            <div class="complete-workout-section">
-                <button class="complete-workout-btn ${isCompleted ? 'completed' : ''}" id="completeWorkoutBtn">
-                    ${isCompleted ? '✓ Workout Completed!' : '✓ Complete Workout'}
-                </button>
-                ${isCompleted ? `<span class="completed-time">Completed ${new Date(todayLog.completedAt).toLocaleTimeString()}</span>` : ''}
-            </div>
-        ` : ''}
+        <div class="complete-workout-section">
+            <button class="complete-workout-btn ${isCompleted ? 'completed' : ''}" id="completeWorkoutBtn" data-date="${selectedDate}" data-day="${day}">
+                ${isCompleted ? '✓ Workout Completed!' : `✓ Complete Workout (${dateDisplay})`}
+            </button>
+            ${isCompleted && selectedLog.completedAt ? `<span class="completed-time">Completed ${new Date(selectedLog.completedAt).toLocaleString()}</span>` : ''}
+        </div>
     `;
     
     // Add click handlers to form buttons
@@ -1167,17 +1181,19 @@ function updateWorkoutDisplay(day) {
     // Add weight input listeners
     document.querySelectorAll('.weight-input').forEach(input => {
         input.addEventListener('change', () => {
-            saveWeightInput(input.dataset.exercise, input.value);
+            saveWeightInput(input.dataset.exercise, input.value, input.dataset.date);
         });
         input.addEventListener('blur', () => {
-            saveWeightInput(input.dataset.exercise, input.value);
+            saveWeightInput(input.dataset.exercise, input.value, input.dataset.date);
         });
     });
     
     // Add complete workout button listener
     const completeBtn = document.getElementById('completeWorkoutBtn');
     if (completeBtn) {
-        completeBtn.addEventListener('click', completeWorkout);
+        completeBtn.addEventListener('click', () => {
+            completeWorkout(completeBtn.dataset.date, parseInt(completeBtn.dataset.day));
+        });
     }
 }
 
@@ -1194,75 +1210,88 @@ function getLastWeight(exerciseName) {
 }
 
 // Save weight input
-function saveWeightInput(exerciseName, weight) {
-    const today = new Date().toISOString().split('T')[0];
+function saveWeightInput(exerciseName, weight, date) {
+    if (!date) {
+        date = new Date().toISOString().split('T')[0];
+    }
     
-    if (!state.workoutLogs[today]) {
-        state.workoutLogs[today] = {
-            day: new Date().getDay(),
+    if (!state.workoutLogs[date]) {
+        const dateObj = new Date(date);
+        state.workoutLogs[date] = {
+            day: dateObj.getDay(),
             exercises: {},
             completed: false
         };
     }
     
-    if (!state.workoutLogs[today].exercises[exerciseName]) {
-        state.workoutLogs[today].exercises[exerciseName] = {};
+    if (!state.workoutLogs[date].exercises[exerciseName]) {
+        state.workoutLogs[date].exercises[exerciseName] = {};
     }
     
-    state.workoutLogs[today].exercises[exerciseName].weight = weight ? parseInt(weight) : null;
+    state.workoutLogs[date].exercises[exerciseName].weight = weight ? parseInt(weight) : null;
     saveState();
 }
 
 // Complete workout
-function completeWorkout() {
-    const today = new Date().toISOString().split('T')[0];
-    const todayNum = new Date().getDay();
+function completeWorkout(date, dayOfWeek) {
+    if (!date) {
+        date = new Date().toISOString().split('T')[0];
+    }
+    if (dayOfWeek === undefined) {
+        dayOfWeek = new Date().getDay();
+    }
     
-    if (!state.workoutLogs[today]) {
-        state.workoutLogs[today] = {
-            day: todayNum,
+    if (!state.workoutLogs[date]) {
+        state.workoutLogs[date] = {
+            day: dayOfWeek,
             exercises: {},
             completed: false
         };
     }
     
-    // Collect all weights
-    document.querySelectorAll('.weight-input').forEach(input => {
+    // Collect all weights for this date
+    document.querySelectorAll(`.weight-input[data-date="${date}"]`).forEach(input => {
         const exerciseName = input.dataset.exercise;
         const weight = input.value;
         if (weight) {
-            if (!state.workoutLogs[today].exercises[exerciseName]) {
-                state.workoutLogs[today].exercises[exerciseName] = {};
+            if (!state.workoutLogs[date].exercises[exerciseName]) {
+                state.workoutLogs[date].exercises[exerciseName] = {};
             }
-            state.workoutLogs[today].exercises[exerciseName].weight = parseInt(weight);
+            state.workoutLogs[date].exercises[exerciseName].weight = parseInt(weight);
         }
     });
     
-    state.workoutLogs[today].completed = true;
-    state.workoutLogs[today].completedAt = new Date().toISOString();
-    state.workoutLogs[today].workoutName = workouts[todayNum].name;
+    state.workoutLogs[date].completed = true;
+    state.workoutLogs[date].completedAt = new Date().toISOString();
+    state.workoutLogs[date].workoutName = workouts[dayOfWeek].name;
     
     // Also mark in completedWorkouts for the progress tracker
-    state.completedWorkouts[`${todayNum}-workout`] = true;
+    state.completedWorkouts[`${dayOfWeek}-workout`] = true;
     
     saveState();
     
     // Update button
     const btn = document.getElementById('completeWorkoutBtn');
-    btn.textContent = '✓ Workout Completed!';
-    btn.classList.add('completed');
+    if (btn) {
+        btn.textContent = '✓ Workout Completed!';
+        btn.classList.add('completed');
+    }
     
     // Show confirmation
-    showWorkoutCompletedModal();
+    showWorkoutCompletedModal(date);
     
     // Update progress display
     updateProgressDisplay();
 }
 
 // Show workout completed confirmation
-function showWorkoutCompletedModal() {
-    const today = new Date().toISOString().split('T')[0];
-    const log = state.workoutLogs[today];
+function showWorkoutCompletedModal(date) {
+    if (!date) {
+        date = new Date().toISOString().split('T')[0];
+    }
+    const log = state.workoutLogs[date];
+    
+    if (!log) return;
     
     // Count exercises with weights logged
     const weightsLogged = Object.values(log.exercises || {}).filter(e => e.weight).length;
