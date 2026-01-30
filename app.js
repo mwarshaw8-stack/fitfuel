@@ -138,6 +138,16 @@ const exerciseVideos = {
         start: 30,
         cues: ["Elbows pinned", "Full ROM", "No swinging"]
     },
+    "Bicep Curls": {
+        videoId: "ykJmrZ5v0Oo",
+        start: 30,
+        cues: ["Elbows pinned", "Full ROM", "No swinging", "Squeeze at top"]
+    },
+    "Dumbbell Lateral Raises": {
+        videoId: "3VcKaXpzqRo",
+        start: 0,
+        cues: ["Slight lean forward", "Raise to shoulder height", "Control the negative"]
+    },
     
     // Core Exercises
     "Dead Bugs": {
@@ -403,7 +413,8 @@ const exerciseVideos = {
     }
 };
 
-// Workout Data - Longevity-Focused Strength & Mobility Program
+// Workout Data - Research-Based Push/Pull/Legs Split for Optimal Muscle Group Targeting
+// Each muscle group trained 2x/week for optimal hypertrophy and strength gains
 const workouts = {
     0: { // Sunday - Mobility & Recovery
         name: "Mobility & Joint Health",
@@ -422,105 +433,107 @@ const workouts = {
         ],
         notes: "Mobility is the foundation of longevity. This isn't optional - it's how you keep moving well for 60+ years. Don't rush these."
     },
-    1: { // Monday - Lower Body Strength
-        name: "Lower Body Strength",
+    1: { // Monday - PUSH DAY 1 (Chest, Shoulders, Triceps)
+        name: "Push Day - Chest & Shoulders Focus",
         type: "Strength",
-        duration: 50,
-        intensity: "Moderate",
-        exercises: [
-            { name: "Hip Circles & Leg Swings", detail: "3 min warm-up" },
-            { name: "Goblet Squat", detail: "3 x 10 (focus on depth)" },
-            { name: "Romanian Deadlift", detail: "3 x 10 (hamstrings & hinge)" },
-            { name: "Walking Lunges", detail: "3 x 8 each leg" },
-            { name: "Glute Bridge (weighted)", detail: "3 x 12" },
-            { name: "Single-Leg Calf Raises", detail: "3 x 12 each" },
-            { name: "Dead Bug", detail: "3 x 10 each side" },
-            { name: "Hip Flexor Stretch", detail: "90 sec each side" }
-        ],
-        notes: "Strong legs = independence as you age. Focus on full range of motion over heavy weight. Control every rep."
-    },
-    2: { // Tuesday - Upper Body Push & Pull
-        name: "Upper Body Balance",
-        type: "Strength",
-        duration: 45,
-        intensity: "Moderate",
+        duration: 55,
+        intensity: "Moderate-High",
         exercises: [
             { name: "Band Pull-Aparts", detail: "2 x 15 warm-up" },
-            { name: "Push-Ups (or Bench Press)", detail: "3 x 10-12" },
-            { name: "Dumbbell Rows", detail: "3 x 10 each arm" },
-            { name: "Overhead Press", detail: "3 x 10" },
-            { name: "Lat Pulldowns (or Pull-Ups)", detail: "3 x 10" },
-            { name: "Face Pulls", detail: "3 x 15 (shoulder health!)" },
-            { name: "Farmer's Carry", detail: "3 x 30 seconds" },
+            { name: "Bench Press", detail: "4 x 6-8 (main movement)" },
+            { name: "Overhead Press", detail: "4 x 6-8 (shoulder strength)" },
+            { name: "Incline Dumbbell Press", detail: "3 x 10 (upper chest)" },
+            { name: "Dumbbell Lateral Raises", detail: "3 x 12 (side delts)" },
+            { name: "Tricep Dips (or Pushdowns)", detail: "3 x 10-12" },
+            { name: "Face Pulls", detail: "3 x 15 (rear delts - shoulder health!)" },
             { name: "Shoulder Stretch", detail: "60 sec each" }
         ],
-        notes: "Balance push and pull 1:1 to prevent shoulder problems. Face pulls are non-negotiable for long-term shoulder health."
+        notes: "PUSH = Horizontal push (chest) + Vertical push (shoulders) + Triceps. Focus on progressive overload - aim to add weight or reps each week."
     },
-    3: { // Wednesday - Core & Cardio
-        name: "Core Stability & Easy Cardio",
-        type: "Core/Cardio",
-        duration: 40,
-        intensity: "Low-Moderate",
+    2: { // Tuesday - PULL DAY 1 (Back, Biceps, Rear Delts)
+        name: "Pull Day - Back & Biceps Focus",
+        type: "Strength",
+        duration: 55,
+        intensity: "Moderate-High",
         exercises: [
-            { name: "Brisk Walk or Light Jog", detail: "20 min (zone 2)" },
-            { name: "Plank Hold", detail: "3 x 30-45 sec" },
-            { name: "Side Plank", detail: "3 x 20 sec each side" },
-            { name: "Bird Dogs", detail: "3 x 8 each side" },
-            { name: "Dead Bugs", detail: "3 x 10 each side" },
-            { name: "Pallof Press (or hold)", detail: "3 x 10 each side" },
-            { name: "Glute Bridges", detail: "2 x 15" },
-            { name: "Cat-Cow Cooldown", detail: "2 minutes" }
+            { name: "Band Pull-Aparts", detail: "2 x 15 warm-up" },
+            { name: "Bent Over Rows", detail: "4 x 6-8 (main horizontal pull)" },
+            { name: "Lat Pulldowns (or Pull-Ups)", detail: "4 x 8-10 (vertical pull)" },
+            { name: "Seated Cable Row (or DB Row)", detail: "3 x 10 (mid-back)" },
+            { name: "Face Pulls", detail: "3 x 15 (rear delts - critical!)" },
+            { name: "Bicep Curls / Tricep Pushdowns", detail: "3 x 12 (biceps)" },
+            { name: "Dead Hang", detail: "3 x 20-30 sec (grip + decompression)" },
+            { name: "Shoulder Stretch", detail: "60 sec each" }
         ],
-        notes: "Core stability prevents back pain - the #1 complaint as people age. Zone 2 cardio (conversational pace) is the best for heart health."
+        notes: "PULL = Horizontal pull (rows) + Vertical pull (pulldowns) + Biceps. Pull 2x for every 1 push to prevent shoulder issues. Face pulls are non-negotiable."
     },
-    4: { // Thursday - Full Body Functional
-        name: "Full Body Functional",
+    3: { // Wednesday - LEGS DAY 1 (Quads, Hamstrings, Glutes, Calves)
+        name: "Legs Day - Lower Body Strength",
+        type: "Strength",
+        duration: 60,
+        intensity: "Moderate-High",
+        exercises: [
+            { name: "Dynamic Warm-Up", detail: "5 min (leg swings, hip circles)" },
+            { name: "Barbell Back Squat", detail: "4 x 6-8 (main quad movement)" },
+            { name: "Romanian Deadlift", detail: "4 x 8-10 (hamstrings & glutes)" },
+            { name: "Bulgarian Split Squats", detail: "3 x 10 each leg (unilateral strength)" },
+            { name: "Leg Press", detail: "3 x 12 (quad volume)" },
+            { name: "Nordic Hamstring Curls", detail: "3 x 8 (hamstring strength - injury prevention)" },
+            { name: "Standing Calf Raises", detail: "4 x 12-15" },
+            { name: "Hip Flexor Stretch", detail: "90 sec each side" }
+        ],
+        notes: "LEGS = Quads (squats) + Hamstrings (RDLs) + Glutes (hip hinge) + Calves. Strong legs = independence as you age. Full ROM over heavy weight."
+    },
+    4: { // Thursday - PUSH DAY 2 (Chest, Shoulders, Triceps - Variation)
+        name: "Push Day - Shoulders & Triceps Focus",
         type: "Strength",
         duration: 50,
-        intensity: "Moderate",
-        exercises: [
-            { name: "Dynamic Warm-Up", detail: "5 min" },
-            { name: "Kettlebell Swings", detail: "3 x 15 (hip power)" },
-            { name: "Goblet Squat to Press", detail: "3 x 8" },
-            { name: "Single-Leg RDL", detail: "3 x 8 each (balance!)" },
-            { name: "Push-Up to Row", detail: "3 x 8 each arm" },
-            { name: "Step-Ups", detail: "3 x 10 each leg" },
-            { name: "Turkish Get-Up", detail: "2 x 3 each side" },
-            { name: "Stretch: Hips & Shoulders", detail: "5 min" }
-        ],
-        notes: "Functional movements = real-life strength. Single-leg work improves balance which prevents falls as you age. Turkish get-ups are the ultimate functional exercise."
-    },
-    5: { // Friday - Upper Body & Carry
-        name: "Upper Strength & Grip",
-        type: "Strength",
-        duration: 45,
         intensity: "Moderate",
         exercises: [
             { name: "Arm Circles & Band Warm-Up", detail: "3 min" },
-            { name: "Incline Dumbbell Press", detail: "3 x 10" },
-            { name: "Seated Cable Row (or DB Row)", detail: "3 x 10" },
-            { name: "Arnold Press", detail: "3 x 10" },
-            { name: "Chin-Ups (or Assisted)", detail: "3 x 6-8" },
-            { name: "Tricep Dips (or Pushdowns)", detail: "2 x 12" },
-            { name: "Bicep Curls", detail: "2 x 12" },
-            { name: "Dead Hang", detail: "3 x 20-30 sec (shoulder health)" }
+            { name: "Overhead Press", detail: "4 x 6-8 (main movement)" },
+            { name: "Dumbbell Incline Press", detail: "3 x 10 (chest variation)" },
+            { name: "Arnold Press", detail: "3 x 10 (shoulder mobility + strength)" },
+            { name: "Dumbbell Lateral Raises", detail: "3 x 12 (side delts)" },
+            { name: "Tricep Dips (or Pushdowns)", detail: "3 x 10-12" },
+            { name: "Push-Ups (or Bench Press)", detail: "2 x max reps (finisher)" },
+            { name: "Face Pulls", detail: "3 x 15 (rear delts)" }
         ],
-        notes: "Grip strength is one of the best predictors of longevity. Dead hangs decompress your spine and build grip. Don't skip them!"
+        notes: "Second push day focuses more on shoulders. Arnold press improves shoulder mobility while building strength. Keep face pulls in every push day."
     },
-    6: { // Saturday - Active Recovery & Fun
-        name: "Active Recovery & Play",
-        type: "Recovery",
-        duration: 45,
-        intensity: "Low",
+    5: { // Friday - PULL DAY 2 (Back, Biceps, Rear Delts - Variation)
+        name: "Pull Day - Back Width & Thickness",
+        type: "Strength",
+        duration: 50,
+        intensity: "Moderate",
         exercises: [
-            { name: "Option A: 30-45 min Walk", detail: "outdoors if possible" },
-            { name: "Option B: Easy Bike Ride", detail: "30-45 min" },
-            { name: "Option C: Swimming", detail: "easy laps, 30 min" },
-            { name: "Option D: Yoga Class", detail: "any style" },
-            { name: "Option E: Recreational Sports", detail: "for fun, not competition" },
-            { name: "Light Stretching", detail: "10 min" }
+            { name: "Band Pull-Aparts", detail: "2 x 15 warm-up" },
+            { name: "Weighted Pull-Ups", detail: "4 x 6-8 (or assisted/chins)" },
+            { name: "Dumbbell Rows", detail: "4 x 10 each arm (unilateral)" },
+            { name: "Lat Pulldowns (or Pull-Ups)", detail: "3 x 10 (width)" },
+            { name: "Seated Cable Row (or DB Row)", detail: "3 x 10 (thickness)" },
+            { name: "Face Pulls", detail: "3 x 15 (rear delts)" },
+            { name: "Bicep Curls / Tricep Pushdowns", detail: "3 x 12" },
+            { name: "Dead Hang", detail: "3 x 20-30 sec" }
         ],
-        notes: "Move your body in a way you enjoy. This isn't about burning calories - it's about staying active for life. Consistency > intensity."
+        notes: "Second pull day emphasizes back width (lats) and thickness (mid-back). Unilateral rows improve imbalances. Grip strength = longevity predictor."
+    },
+    6: { // Saturday - LEGS DAY 2 (Quads, Hamstrings, Glutes - Variation + Core)
+        name: "Legs Day - Functional Strength & Core",
+        type: "Strength",
+        duration: 55,
+        intensity: "Moderate",
+        exercises: [
+            { name: "Hip Circles & Leg Swings", detail: "3 min warm-up" },
+            { name: "Front Squats", detail: "4 x 6-8 (more upright, core engagement)" },
+            { name: "Single-Leg RDL", detail: "3 x 8 each (balance + hamstrings)" },
+            { name: "Walking Lunges", detail: "3 x 10 each leg (functional)" },
+            { name: "Glute Bridge (weighted)", detail: "3 x 12 (glute activation)" },
+            { name: "Step-Ups", detail: "3 x 10 each leg (single-leg strength)" },
+            { name: "Plank Hold", detail: "3 x 45-60 sec (core stability)" },
+            { name: "Hip Flexor Stretch", detail: "90 sec each side" }
+        ],
+        notes: "Second legs day includes more single-leg work (prevents falls) and functional movements. Front squats improve core strength and posture."
     }
 };
 
@@ -727,14 +740,22 @@ let state = {
 
 // Exercises that should have weight tracking (strength movements)
 const weightedExercises = [
-    "Goblet Squat", "Romanian Deadlift", "Walking Lunges", "Glute Bridge (weighted)",
-    "Push-Ups (or Bench Press)", "Dumbbell Rows", "Overhead Press", "Lat Pulldowns (or Pull-Ups)",
-    "Face Pulls", "Farmer's Carry", "Kettlebell Swings", "Goblet Squat to Press",
-    "Push-Up to Row", "Step-Ups", "Turkish Get-Up", "Incline Dumbbell Press",
-    "Seated Cable Row (or DB Row)", "Arnold Press", "Chin-Ups (or Assisted)", "Tricep Dips (or Pushdowns)",
-    "Barbell Back Squat", "Bulgarian Split Squats", "Leg Press", "Bench Press",
-    "Bent Over Rows", "Power Cleans", "Front Squats", "Push Press", "Weighted Pull-Ups",
-    "Single-Leg RDL", "Glute Bridges"
+    // Lower Body
+    "Barbell Back Squat", "Front Squats", "Goblet Squat", "Romanian Deadlift", 
+    "Walking Lunges", "Bulgarian Split Squats", "Leg Press", "Single-Leg RDL",
+    "Glute Bridge (weighted)", "Glute Bridges", "Step-Ups", "Standing Calf Raises",
+    "Nordic Hamstring Curls",
+    // Upper Body Push
+    "Bench Press", "Push-Ups (or Bench Press)", "Incline Dumbbell Press", "Dumbbell Incline Press",
+    "Overhead Press", "Arnold Press", "Dumbbell Lateral Raises", "Tricep Dips (or Pushdowns)",
+    "Face Pulls",
+    // Upper Body Pull
+    "Bent Over Rows", "Dumbbell Rows", "Seated Cable Row (or DB Row)", 
+    "Lat Pulldowns (or Pull-Ups)", "Weighted Pull-Ups", "Chin-Ups (or Assisted)",
+    "Bicep Curls / Tricep Pushdowns", "Bicep Curls",
+    // Functional/Other
+    "Goblet Squat to Press", "Push-Up to Row", "Turkish Get-Up", "Kettlebell Swings",
+    "Farmer's Carry", "Power Cleans", "Push Press", "Dead Hang"
 ];
 
 // Load state from localStorage (fallback when not signed in)
