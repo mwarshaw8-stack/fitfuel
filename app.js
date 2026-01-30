@@ -467,24 +467,7 @@ const workouts = {
         ],
         notes: "PULL = Horizontal pull (rows) + Vertical pull (pulldowns) + Biceps. Pull 2x for every 1 push to prevent shoulder issues. Face pulls are non-negotiable."
     },
-    3: { // Wednesday - LEGS DAY 1 (Quads, Hamstrings, Glutes, Calves)
-        name: "Legs Day - Lower Body Strength",
-        type: "Strength",
-        duration: 60,
-        intensity: "Moderate-High",
-        exercises: [
-            { name: "Dynamic Warm-Up", detail: "5 min (leg swings, hip circles)" },
-            { name: "Barbell Back Squat", detail: "4 x 6-8 (main quad movement)" },
-            { name: "Romanian Deadlift", detail: "4 x 8-10 (hamstrings & glutes)" },
-            { name: "Bulgarian Split Squats", detail: "3 x 10 each leg (unilateral strength)" },
-            { name: "Leg Press", detail: "3 x 12 (quad volume)" },
-            { name: "Nordic Hamstring Curls", detail: "3 x 8 (hamstring strength - injury prevention)" },
-            { name: "Standing Calf Raises", detail: "4 x 12-15" },
-            { name: "Hip Flexor Stretch", detail: "90 sec each side" }
-        ],
-        notes: "LEGS = Quads (squats) + Hamstrings (RDLs) + Glutes (hip hinge) + Calves. Strong legs = independence as you age. Full ROM over heavy weight."
-    },
-    4: { // Thursday - PUSH DAY 2 (Chest, Shoulders, Triceps - Variation)
+    3: { // Wednesday - PUSH DAY 2 (Chest, Shoulders, Triceps - Variation)
         name: "Push Day - Shoulders & Triceps Focus",
         type: "Strength",
         duration: 50,
@@ -500,6 +483,23 @@ const workouts = {
             { name: "Face Pulls", detail: "3 x 15 (rear delts)" }
         ],
         notes: "Second push day focuses more on shoulders. Arnold press improves shoulder mobility while building strength. Keep face pulls in every push day."
+    },
+    4: { // Thursday - LEGS DAY 1 (Quads, Hamstrings, Glutes, Calves) - MAIN LEG DAY
+        name: "Legs Day - Lower Body Strength",
+        type: "Strength",
+        duration: 60,
+        intensity: "Moderate-High",
+        exercises: [
+            { name: "Dynamic Warm-Up", detail: "5 min (leg swings, hip circles)" },
+            { name: "Barbell Back Squat", detail: "4 x 6-8 (main quad movement)" },
+            { name: "Romanian Deadlift", detail: "4 x 8-10 (hamstrings & glutes)" },
+            { name: "Bulgarian Split Squats", detail: "3 x 10 each leg (unilateral strength)" },
+            { name: "Leg Press", detail: "3 x 12 (quad volume)" },
+            { name: "Nordic Hamstring Curls", detail: "3 x 8 (hamstring strength - injury prevention)" },
+            { name: "Standing Calf Raises", detail: "4 x 12-15" },
+            { name: "Hip Flexor Stretch", detail: "90 sec each side" }
+        ],
+        notes: "LEGS = Quads (squats) + Hamstrings (RDLs) + Glutes (hip hinge) + Calves. Strong legs = independence as you age. Full ROM over heavy weight."
     },
     5: { // Friday - PULL DAY 2 (Back, Biceps, Rear Delts - Variation)
         name: "Pull Day - Back Width & Thickness",
