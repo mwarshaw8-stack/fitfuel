@@ -525,7 +525,7 @@ const workouts = {
         intensity: "Moderate",
         exercises: [
             { name: "Hip Circles & Leg Swings", detail: "3 min warm-up" },
-            { name: "Front Squats", detail: "4 x 6-8 (more upright, core engagement)" },
+            { name: "Barbell Back Squat", detail: "3 x 8-10 (volume focus)" },
             { name: "Single-Leg RDL", detail: "3 x 8 each (balance + hamstrings)" },
             { name: "Walking Lunges", detail: "3 x 10 each leg (functional)" },
             { name: "Glute Bridge (weighted)", detail: "3 x 12 (glute activation)" },
@@ -533,7 +533,7 @@ const workouts = {
             { name: "Plank Hold", detail: "3 x 45-60 sec (core stability)" },
             { name: "Hip Flexor Stretch", detail: "90 sec each side" }
         ],
-        notes: "Second legs day includes more single-leg work (prevents falls) and functional movements. Front squats improve core strength and posture."
+        notes: "Second legs day includes more single-leg work (prevents falls) and functional movements. Back squats for volume to complement Thursday's strength focus."
     }
 };
 
